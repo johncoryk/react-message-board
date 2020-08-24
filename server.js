@@ -1,6 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const postRouter = require('./routes/post-router');
+
 const app = express();
 
 //Middleware
@@ -15,6 +17,8 @@ app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 app.get('/', (req, res) => {
   res.send('Server is working!');
 });
+
+app.use('/posts', postRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send({
