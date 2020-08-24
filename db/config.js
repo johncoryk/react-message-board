@@ -1,4 +1,4 @@
-const DB_NAME = 'message-board';
+const DB_NAME = 'message_board';
 
 const options = {
   query: e => {

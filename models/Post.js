@@ -10,7 +10,7 @@ class Post {
   static getAll() {
     return db
       .manyOrNone(
-        `SELECT * FROM message-board
+        `SELECT * FROM message_board
       ORDER BY createdOn ASC`
       )
       .then(posts => {
