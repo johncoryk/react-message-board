@@ -11,5 +11,3 @@ NintendoRed: #C81C27
 - Boards
 
 How will all of these play together?
-
-test from sam
