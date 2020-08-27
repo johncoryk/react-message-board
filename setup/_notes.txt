@@ -1,0 +1,25 @@
+//COLOR IDEAS:
+- Old School NES:
+DarkGrey: #4A4E50, LightGray: #A9ABA9, 
+DarkPurple: #473F7B, LightPurple: #9D9BD9, 
+Indigo: #6f00ff,
+NintendoRed: #C81C27
+
+//FONT IDEAS
+- Roboto for body and large headings.
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+font-family: 'Roboto', sans-serif;
+
+- Roboto Condensed for titles and topic headings.
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+font-family: 'Roboto Condensed', sans-serif;
+
+//ICON SET
+- https://react-icons.github.io/  
+
+//DATABASE TABLES
+- Users
+- Posts
+- Boards
+
+How will all of these play together?
