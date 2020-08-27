@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+:root {
+  --main-bg: #f3f3f3;
+  --main-gray: #a9aba9;
+  --alt-gray: #4a4e50;
+  --dark-purple: #473f7b;
+  --red: #c81c27;
+  --body: #222;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--body);
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--main-bg);
+}
+
+ul {
+  list-style: none;
+}
+
+.sub-heading {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.game-heading {
+  color: var(--alt-gray);
+}
+
+.button-style {
+  color: var(--main-bg);
+  padding: 0.25rem 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 100ms;
+  border: none;
+  border-radius: 2px;
+}
+
+.default {
+  background-color: var(--dark-purple);
+  border: 1px solid var(--dark-purple);
+}
+
+.default:hover {
+  border: 1px solid var(--dark-purple);
+  background: none;
+  color: var(--dark-purple);
+}
+
+.red {
+  background-color: var(--red);
+  border: 1px solid var(--red);
+}
+
+.red:hover {
+  border: 1px solid var(--red);
+  background: none;
+  color: var(--red);
+}

@@ -18,8 +18,9 @@ font-family: 'Roboto Condensed', sans-serif;
 - https://react-icons.github.io/  
 
 //DATABASE TABLES
-- Users
-- Posts
-- Boards
+- Boards  | < Flow
+- Topics  |
+- Posts   |
+- Users   V
 
 How will all of these play together?

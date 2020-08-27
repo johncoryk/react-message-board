@@ -2,12 +2,13 @@
 
 ## COLORS
 
-- Main/Background: #A9ABA9
+- Main Gray: #A9ABA9
+- Main/Background: #f3f3f3
 - Secondary: #473F7B
-- Alt: #4A4E50
-- Alt: #9D9BD9
-- Alt: #C81C27
-- Body Text: #333 (lighter black)
+- Alt Gray: #4A4E50
+- Alt Purple: #9D9BD9
+- Alt Red: #C81C27
+- Body Text: #222 (lighter black)
 
 ## FONTS
 
