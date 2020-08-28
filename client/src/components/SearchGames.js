@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from './utility/Button';
 import SubHeading from './utility/SubHeading';
 import GameHeading from './utility/GameHeading';
+import LargeHeading from './utility/LargeHeading';
 
 const SearchGames = () => {
   const [game, setGame] = useState('');
@@ -20,13 +21,19 @@ const SearchGames = () => {
       .then(data => {
         setGame(data.results[0]);
         console.log(data.results[0]);
+        setSearchItem('');
       });
   };
 
   return (
     <div className='search-container'>
       <form onSubmit={e => getGameInfo(e)}>
-        <input type='text' value={searchItem} onChange={handleChange} />
+        <input
+          className='search-input'
+          type='text'
+          value={searchItem}
+          onChange={handleChange}
+        />
         <Button text='Search' color='default' />
       </form>
       {game ? (
@@ -37,15 +44,31 @@ const SearchGames = () => {
             alt={game.name}
           />
           <SubHeading text={game.name} />
-          <GameHeading text={game.parent_platforms[0].platform.name} />
+          <div className='horizontal-rule'></div>
+          <ul className='platforms'>
+            {game.parent_platforms.map(platform => (
+              <li key={platform.platform.id}>
+                <GameHeading text={platform.platform.name} />
+              </li>
+            ))}
+          </ul>
           <h3>Released: {game.released}</h3>
-          <h3>Rating: {game.rating}</h3>
-          {game.genres.map(genre => (
-            <span>{genre.name} </span>
-          ))}
+          <h3>
+            <em>Rating: {game.rating}</em>
+          </h3>
+          <ul className='genres'>
+            <p>
+              <b>Genre(s):</b>
+            </p>
+            {game.genres.map(genre => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
+          </ul>
         </article>
       ) : (
-        'Search for a game!'
+        <div className='not-rendered'>
+          <LargeHeading text='Search for a game!' />
+        </div>
       )}
       <article className='game-info'></article>
     </div>
