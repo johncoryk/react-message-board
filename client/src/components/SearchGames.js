@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import Button from './utility/Button';
+import SubHeading from './utility/SubHeading';
+import GameHeading from './utility/GameHeading';
+
 const SearchGames = () => {
   const [game, setGame] = useState('');
   const [searchItem, setSearchItem] = useState('');
@@ -23,11 +27,17 @@ const SearchGames = () => {
     <div className='search-container'>
       <form onSubmit={e => getGameInfo(e)}>
         <input type='text' value={searchItem} onChange={handleChange} />
-        <input className='btn-style' type='submit' value='Search' />
+        <Button text='Search' color='default' />
       </form>
       {game ? (
         <article className='game-info'>
-          <h2>{game.name}</h2>
+          <img
+            className='game-image'
+            src={game.background_image}
+            alt={game.name}
+          />
+          <SubHeading text={game.name} />
+          <GameHeading text={game.parent_platforms[0].platform.name} />
           <h3>Released: {game.released}</h3>
           <h3>Rating: {game.rating}</h3>
           {game.genres.map(genre => (

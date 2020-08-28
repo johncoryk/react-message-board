@@ -5,9 +5,6 @@ import SubHeading from '../components/utility/SubHeading';
 import GameHeading from './utility/GameHeading';
 import Button from '../components/utility/Button';
 
-// testing
-import SearchGames from './SearchGames';
-
 export default class MainPage extends Component {
   render() {
     return (
@@ -18,7 +15,6 @@ export default class MainPage extends Component {
           <GameHeading text='Nintendo Switch' />
           <Button color='red' text='Red Button' />
           <Button color='default' text='Default Button' />
-          <SearchGames />
         </main>
       </>
     );
