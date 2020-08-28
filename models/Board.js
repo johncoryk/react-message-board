@@ -17,7 +17,7 @@ class Board {
       ORDER BY created_on ASC`
       )
       .then(boards => {
-        return boards.map(Board => new this(board));
+        return boards.map(board => new this(board));
       });
   }
 }
