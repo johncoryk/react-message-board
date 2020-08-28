@@ -3,7 +3,7 @@
 ## COLORS
 
 - Main Gray: #A9ABA9
-- Main/Background: #f3f3f3
+- Main/Background: #ebebeb
 - Secondary: #473F7B
 - Alt Gray: #4A4E50
 - Alt Purple: #9D9BD9
