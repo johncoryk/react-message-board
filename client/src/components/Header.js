@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from './utility/Button';
 
@@ -9,7 +10,12 @@ const Header = () => {
         <h1 className='logo'>GAMECHAT</h1>
         <div className='links-container'>
           <ul className='links'>
-            <li>Home</li>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/game-search'>Search Games</Link>
+            </li>
             <li>About</li>
             <li>Contact</li>
           </ul>
