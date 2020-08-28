@@ -27,6 +27,20 @@ ul {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 100ms;
+}
+
+a:hover {
+  color: var(--dark-purple);
+}
+
+.active {
+  color: var(--dark-purple);
+}
+
 /* UTILITIES */
 
 .sub-heading {
