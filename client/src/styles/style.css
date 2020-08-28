@@ -31,6 +31,8 @@ ul {
 
 .sub-heading {
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 0.1rem;
 }
 
 .game-heading {
@@ -74,6 +76,13 @@ ul {
   font-size: 0.6rem;
 }
 
+.horizontal-rule {
+  width: 50%;
+  margin: 0.5rem 0;
+  background-color: var(--light-purple);
+  height: 1px;
+}
+
 /* MAIN COMPONENT */
 .main-content {
   display: flex;
@@ -89,7 +98,7 @@ ul {
 .header {
   width: 100vw;
   height: 4rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 5rem;
   background-color: var(--light-purple);
   border-bottom: 5px solid var(--dark-purple);
   display: flex;
@@ -136,10 +145,10 @@ ul {
 /* FOOTER */
 
 .footer {
-  width: 100vw;
+  width: 90vw;
   height: 8rem;
-  margin-top: 1.5rem;
-  border-top: 2px solid var(--light-purple);
+  margin: 5rem auto 0;
+  border-top: 1px solid var(--light-purple);
   display: flex;
   align-items: center;
   padding: 0.2rem;
@@ -150,4 +159,56 @@ ul {
   width: 80vw;
   max-width: 1100px;
   margin: 0 auto;
+}
+
+/* SEARCH PAGE */
+.game-image {
+  width: 100%;
+  margin: 1rem 0;
+  -webkit-box-shadow: 3px 6px 12px -4px rgba(0, 0, 0, 0.62);
+  -moz-box-shadow: 3px 6px 12px -4px rgba(0, 0, 0, 0.62);
+  box-shadow: 3px 6px 12px -4px rgba(0, 0, 0, 0.62);
+}
+
+.platforms {
+  display: flex;
+  flex-direction: row;
+}
+
+.platforms li {
+  margin-right: 0.8rem;
+}
+
+.genres {
+  display: flex;
+  flex-direction: row;
+}
+
+.genres li {
+  margin-right: 0.8rem;
+}
+
+.genres p {
+  margin-right: 0.3rem;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.2rem;
+  margin-right: 1rem;
+  width: 200px;
+}
+
+.search-container form {
+  display: flex;
+  flex-direction: row;
+}
+
+.not-rendered {
+  margin-top: 5rem;
 }
