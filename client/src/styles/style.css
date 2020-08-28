@@ -42,7 +42,6 @@ a:hover {
 }
 
 /* UTILITIES */
-
 .sub-heading {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1.8rem;
@@ -108,10 +107,9 @@ a:hover {
 }
 
 /* HEADER */
-
 .header {
   width: 100vw;
-  height: 4rem;
+  height: 5rem;
   margin-bottom: 5rem;
   background-color: var(--light-purple);
   border-bottom: 5px solid var(--dark-purple);
