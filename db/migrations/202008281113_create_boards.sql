@@ -2,5 +2,6 @@ CREATE TABLE IF NOT EXISTS boards
 (id SERIAL PRIMARY KEY,
 title VARCHAR(255) NOT NULL,
 topics_count INTEGER,
+created_at TIMESTAMPTZ,
 created_on DATE DEFAULT CURRENT_DATE,
-author VARCHAR(255));
+user_id INTEGER;

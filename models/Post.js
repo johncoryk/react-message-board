@@ -5,7 +5,9 @@ class Post {
     this.id = post.id || null;
     this.created_at = post.created_at;
     this.created_on = post.created_on;
-    this.body = post.body;
+    this.text = post.text;
+    this.user_id = post.user_id;
+    this.topic_id = post.topic_id;
   }
 
   static getAll() {
