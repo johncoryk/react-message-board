@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import Button from './utility/Button';
 
@@ -11,10 +11,14 @@ const Header = () => {
         <div className='links-container'>
           <ul className='links'>
             <li>
-              <Link to='/'>Home</Link>
+              <NavLink activeClassName='active' exact to='/'>
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to='/game-search'>Search Games</Link>
+              <NavLink activeClassName='active' exact to='/game-search'>
+                Search Games
+              </NavLink>
             </li>
             <li>About</li>
             <li>Contact</li>
