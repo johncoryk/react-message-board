@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import MainPage from './components/MainPage';
 import SearchGames from './components/SearchGames';
 
+
 import './styles/style.css';
 
 function App() {
