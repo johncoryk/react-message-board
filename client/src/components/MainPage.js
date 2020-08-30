@@ -16,8 +16,8 @@ export default class MainPage extends Component {
   render() {
     return (
       <>
-        <main>
-          <LargeHeading text='Boards' />
+        <main className='boards-container'>
+          <LargeHeading text='GameChat Message Boards' />
           <section className='boards-table'>
             <div className='table-header'>
               <SubHeading text='Board' />
@@ -26,19 +26,19 @@ export default class MainPage extends Component {
                 <SubHeading text='Msgs' />
                 <SubHeading text='Last Post' />
               </div>
-              {this.state.allBoards.map(board => (
-                <>
-                  <div className='board-row'>
-                    <GameHeading text={board.title} />
-                    <div className='board-row-info'>
-                      <p>{board.topics_count}</p>
-                      <p>530</p>
-                      <p>4 Minutes</p>
-                    </div>
-                  </div>
-                </>
-              ))}
             </div>
+            {this.state.allBoards.map(board => (
+              <>
+                <div className='board-row'>
+                  <GameHeading text={board.title} />
+                  <div className='board-row-info'>
+                    <p>{board.topics_count}</p>
+                    <p>530</p>
+                    <p>4 Minutes</p>
+                  </div>
+                </div>
+              </>
+            ))}
           </section>
         </main>
       </>

@@ -225,3 +225,45 @@ a:hover {
 .not-rendered {
   margin-top: 5rem;
 }
+
+/* BOARDS PAGE */
+.boards-container h1 {
+  margin-bottom: 0.7rem;
+}
+
+.boards-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  background-color: var(--dark-purple);
+  color: var(--main-bg);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+}
+
+.board-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.board-row:nth-child(even) {
+  background-color: var(--main-gray);
+}
+
+.board-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.7rem 0.5rem;
+}
+
+.board-row-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
