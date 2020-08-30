@@ -2,19 +2,26 @@ import React, { Component } from 'react';
 
 import LargeHeading from '../components/utility/LargeHeading';
 import SubHeading from '../components/utility/SubHeading';
-import GameHeading from './utility/GameHeading';
-import Button from '../components/utility/Button';
+// import GameHeading from './utility/GameHeading';
+// import Button from '../components/utility/Button';
 
 export default class MainPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allBoards: this.props.allBoards,
+    };
+  }
+
   render() {
     return (
       <>
         <main>
-          <LargeHeading text='This is a large heading to reuse over and over again.' />
-          <SubHeading text='This is a smaller subheading to reuse as well!' />
-          <GameHeading text='Nintendo Switch' />
-          <Button color='red' text='Red Button' />
-          <Button color='default' text='Default Button' />
+          <LargeHeading text='Boards' />
+          <div className='horizontal-rule'></div>
+          {this.state.allBoards.map(board => (
+            <SubHeading text={board.title} />
+          ))}
         </main>
       </>
     );
