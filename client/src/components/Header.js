@@ -2,12 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Button from './utility/Button';
+import logo from '../img/gamechat_logo_v1.png';
 
 const Header = () => {
   return (
     <header className='header'>
       <div className='header-content'>
-        <h1 className='logo'>GAMECHAT</h1>
+        <img className='logo' src={logo} alt='gamechat logo' />
         <div className='links-container'>
           <ul className='links'>
             <li>
@@ -23,10 +24,10 @@ const Header = () => {
             <li>About</li>
             <li>Contact</li>
           </ul>
-        </div>
-        <div className='nav-btns'>
-          <Button text='Login' color='default' size='small' />
-          <Button text='Signup' color='default' size='small' />
+          <div className='nav-btns'>
+            <Button text='Login' color='default' size='small' />
+            <Button text='Signup' color='default' size='small' />
+          </div>
         </div>
       </div>
     </header>
