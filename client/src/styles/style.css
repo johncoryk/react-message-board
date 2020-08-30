@@ -44,12 +44,13 @@ a:hover {
 /* UTILITIES */
 .sub-heading {
   font-family: 'Roboto Condensed', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   margin-bottom: 0.1rem;
 }
 
 .game-heading {
   color: var(--alt-gray);
+  font-size: 1rem;
 }
 
 .button-style {
@@ -129,13 +130,14 @@ a:hover {
 }
 
 .logo {
+  width: 200px;
   margin-right: 1.5rem;
-  flex-grow: 3;
 }
 
 .links-container {
-  flex-grow: 5;
-  margin-right: 1.5rem;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .links {
@@ -144,14 +146,18 @@ a:hover {
   justify-content: space-between;
 }
 
+.links li {
+  margin-left: 1rem;
+}
+
 .nav-btns {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 }
 
-.nav-btns button:first-of-type {
-  margin-bottom: 0.5rem;
+.nav-btns button {
+  margin-left: 1rem;
 }
 
 /* FOOTER */
@@ -223,4 +229,46 @@ a:hover {
 
 .not-rendered {
   margin-top: 5rem;
+}
+
+/* BOARDS PAGE */
+.boards-container h1 {
+  margin-bottom: 0.7rem;
+}
+
+.boards-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  background-color: var(--dark-purple);
+  color: var(--main-bg);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+}
+
+.board-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.board-row:nth-child(even) {
+  background-color: var(--main-gray);
+}
+
+.board-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.7rem 0.5rem;
+}
+
+.board-row-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
