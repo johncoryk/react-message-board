@@ -3,5 +3,4 @@ CREATE TABLE IF NOT EXISTS posts
 text TEXT,
 user_id INTEGER,
 topic_id INTEGER,
-created_at TIMESTAMPTZ,
-created_on DATE DEFAULT CURRENT_DATE);
+created_at TIMESTAMPTZ);

@@ -3,5 +3,4 @@ CREATE TABLE IF NOT EXISTS users
 user_name VARCHAR NOT NULL(255),
 password_digest VARCHAR NOT NULL(255),
 email VARCHAR NOT NULL (255),
-created_at TIMESTAMPTZ
-created_on DATE DEFAULT CURRENT_DATE);
+created_at TIMESTAMPTZ);
