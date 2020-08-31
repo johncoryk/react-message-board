@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import LargeHeading from '../components/utility/LargeHeading';
 import SubHeading from '../components/utility/SubHeading';
@@ -28,16 +29,16 @@ export default class MainPage extends Component {
               </div>
             </div>
             {this.state.allBoards.map(board => (
-              <>
-                <div className='board-row'>
+              <div key={board.id} className='board-row'>
+                <Link to={`/board/${board.id}`}>
                   <GameHeading text={board.title} />
-                  <div className='board-row-info'>
-                    <p>{board.topics_count}</p>
-                    <p>530</p>
-                    <p>4 Minutes</p>
-                  </div>
+                </Link>
+                <div className='board-row-info'>
+                  <p>{board.topics_count}</p>
+                  <p>530</p>
+                  <p>4 Minutes</p>
                 </div>
-              </>
+              </div>
             ))}
           </section>
         </main>

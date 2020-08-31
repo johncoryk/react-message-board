@@ -3,8 +3,9 @@ import { Redirect } from 'react-router-dom';
 
 // import Board from './Board';
 import MainPage from './MainPage';
+import Board from './Board';
 
-import boards from '../THROW_AWAY_DATA/data';
+import { boards } from '../THROW_AWAY_DATA/data';
 
 export default class BoardController extends Component {
   constructor(props) {
@@ -13,13 +14,14 @@ export default class BoardController extends Component {
       currentPage: props.currentPage,
       currentId: props.currentId || null,
       dataLoaded: false,
-      allBoards: null,
+      allBoards: boards,
       currentBoard: null,
       fireRedirect: false,
       redirectPath: null,
     };
 
     this.decideWhichToRender = this.decideWhichToRender.bind(this);
+    this.findBoardById = this.findBoardById.bind(this);
   }
 
   componentDidMount() {
@@ -28,13 +30,28 @@ export default class BoardController extends Component {
         allBoards: boards,
         dataLoaded: true,
       });
+    } else if (this.state.currentPage === 'show') {
+      const foundBoard = this.findBoardById(this.state.currentId);
+      this.setState({
+        currentBoard: foundBoard,
+        dataLoaded: true,
+      });
     }
+  }
+
+  // Throw away func to find board/id
+  findBoardById(id) {
+    return this.state.allBoards.find(
+      board => parseInt(board.id) === parseInt(id)
+    );
   }
 
   decideWhichToRender() {
     switch (this.state.currentPage) {
       case 'index':
         return <MainPage allBoards={this.state.allBoards} />;
+      case 'show':
+        return <Board currentBoard={this.state.currentBoard} />;
       default:
         return <Redirect push to='/' />;
     }

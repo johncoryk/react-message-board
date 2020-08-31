@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './components/Header';
@@ -8,21 +8,35 @@ import BoardController from './components/BoardController';
 
 import './styles/style.css';
 
-function App() {
-  return (
-    <Router>
-      <Header />
-      <div className='main-content'>
-        <Route
-          exact
-          path='/'
-          render={() => <BoardController currentPage='index' />}
-        />
-        <Route exact path='/game-search' component={SearchGames} />
-      </div>
-      <Footer />
-    </Router>
-  );
-}
+export default class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
 
-export default App;
+  render() {
+    return (
+      <Router>
+        <Header />
+        <div className='main-content'>
+          <Route
+            exact
+            path='/'
+            render={() => <BoardController currentPage='index' />}
+          />
+          <Route
+            exact
+            path='/board/:id'
+            render={props => (
+              <BoardController
+                currentPage='show'
+                currentId={props.match.params.id}
+              />
+            )}
+          />
+          <Route exact path='/game-search' component={SearchGames} />
+        </div>
+        <Footer />
+      </Router>
+    );
+  }
+}
