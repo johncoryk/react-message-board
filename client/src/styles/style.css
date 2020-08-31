@@ -144,10 +144,11 @@ a:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-right: 0.25rem;
 }
 
 .links li {
-  margin-left: 1rem;
+  margin-left: 1.3rem;
 }
 
 .nav-btns {
@@ -157,11 +158,10 @@ a:hover {
 }
 
 .nav-btns button {
-  margin-left: 1rem;
+  margin-left: 0.75rem;
 }
 
 /* FOOTER */
-
 .footer {
   width: 90vw;
   height: 8rem;

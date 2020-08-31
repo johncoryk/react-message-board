@@ -16,4 +16,17 @@ const boards = [
   },
 ];
 
-export default boards;
+const topics = [
+  {
+    id: 1,
+    title: 'How To Get All Moons!',
+    topics_count: 10,
+  },
+  {
+    id: 2,
+    title: 'How to get a red yoshi..',
+    topics_count: 14,
+  },
+];
+
+export { boards, topics };
