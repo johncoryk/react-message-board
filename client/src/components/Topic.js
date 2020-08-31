@@ -23,7 +23,7 @@ export default class Topic extends Component {
         <Button text='Post New Message' color='default' />
         <div className='topics-container'>
           {posts.map(post => (
-            <>
+            <div key={post.id} className='post-row'>
               <div className='post-header'>
                 <GameHeading text={post.user} />
                 <p>#1</p>
@@ -31,7 +31,7 @@ export default class Topic extends Component {
               <div className='post-body'>
                 <p>{post.body}</p>
               </div>
-            </>
+            </div>
           ))}
         </div>
       </main>
