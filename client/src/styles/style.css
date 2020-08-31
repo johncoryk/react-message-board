@@ -86,6 +86,17 @@ a:hover {
   color: var(--red);
 }
 
+.gray {
+  background-color: var(--alt-gray);
+  border: 1px solid var(--alt-gray);
+}
+
+.gray:hover {
+  border: 1px solid var(--alt-gray);
+  background: none;
+  color: var(--alt-gray);
+}
+
 .small {
   font-size: 0.6rem;
 }
@@ -239,6 +250,7 @@ a:hover {
 .boards-table {
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--main-gray);
 }
 
 .table-header {
@@ -271,4 +283,23 @@ a:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+/* TOPIC PAGE/POSTS */
+.topics-container {
+  margin-top: 0.6rem;
+  border: 1px solid var(--main-gray);
+}
+
+.post-header {
+  background-color: var(--light-purple);
+  color: var(--main-bg);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+}
+
+.post-body {
+  padding: 1rem 0.3rem;
 }

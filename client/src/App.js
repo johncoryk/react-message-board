@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import SearchGames from './components/SearchGames';
 import BoardController from './components/BoardController';
 
-
 import './styles/style.css';
 
 export default class App extends Component {
@@ -30,6 +29,16 @@ export default class App extends Component {
             render={props => (
               <BoardController
                 currentPage='show'
+                currentId={props.match.params.id}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/topic/:id'
+            render={props => (
+              <BoardController
+                currentPage='topic'
                 currentId={props.match.params.id}
               />
             )}

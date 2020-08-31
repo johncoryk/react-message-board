@@ -4,8 +4,9 @@ import { Redirect } from 'react-router-dom';
 // import Board from './Board';
 import MainPage from './MainPage';
 import Board from './Board';
+import Topic from './Topic';
 
-import { boards } from '../THROW_AWAY_DATA/data';
+import { boards, topics } from '../THROW_AWAY_DATA/data';
 
 export default class BoardController extends Component {
   constructor(props) {
@@ -13,9 +14,11 @@ export default class BoardController extends Component {
     this.state = {
       currentPage: props.currentPage,
       currentId: props.currentId || null,
-      dataLoaded: false,
-      allBoards: boards,
       currentBoard: null,
+      currentTopic: null,
+      allBoards: boards,
+      allTopics: topics,
+      dataLoaded: false,
       fireRedirect: false,
       redirectPath: null,
     };
@@ -36,6 +39,12 @@ export default class BoardController extends Component {
         currentBoard: foundBoard,
         dataLoaded: true,
       });
+    } else if (this.state.currentPage === 'topic') {
+      const foundTopic = this.findTopicById(this.state.currentId);
+      this.setState({
+        currentTopic: foundTopic,
+        dataLoaded: true,
+      });
     }
   }
 
@@ -46,12 +55,20 @@ export default class BoardController extends Component {
     );
   }
 
+  findTopicById(id) {
+    return this.state.allTopics.find(
+      topic => parseInt(topic.id) === parseInt(id)
+    );
+  }
+
   decideWhichToRender() {
     switch (this.state.currentPage) {
       case 'index':
         return <MainPage allBoards={this.state.allBoards} />;
       case 'show':
         return <Board currentBoard={this.state.currentBoard} />;
+      case 'topic':
+        return <Topic currentTopic={this.state.currentTopic} />;
       default:
         return <Redirect push to='/' />;
     }
