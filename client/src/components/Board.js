@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
@@ -16,31 +17,30 @@ export default class Board extends Component {
 
   render() {
     return (
-      <>
-        <main className='boards-container'>
-          <LargeHeading text={this.state.board.title} />
-          <section className='boards-table'>
-            <div className='table-header'>
-              <SubHeading text='Board' />
-              <div className='board-info'>
-                <SubHeading text='Topics' />
-                <SubHeading text='Msgs' />
-                <SubHeading text='Last Post' />
+      <main className='boards-container'>
+        <LargeHeading text={this.state.board.title} />
+        <section className='boards-table'>
+          <div className='table-header'>
+            <SubHeading text='Topics' />
+            <div className='board-info'>
+              <SubHeading text='Msgs' />
+              <SubHeading text='Last Post' />
+            </div>
+          </div>
+          {topics.map(topic => (
+            <div key={topic.id} className='board-row'>
+              <Link to={`/topic/1`}>
+                <GameHeading text={topic.title} />
+              </Link>
+              <div className='board-row-info'>
+                <p>{topic.topics_count}</p>
+                <p>530</p>
+                <p>4 Minutes</p>
               </div>
             </div>
-            {topics.map(topic => (
-              <div key={topic.id} className='board-row'>
-                <GameHeading text={topic.title} />
-                <div className='board-row-info'>
-                  <p>{topic.topics_count}</p>
-                  <p>530</p>
-                  <p>4 Minutes</p>
-                </div>
-              </div>
-            ))}
-          </section>
-        </main>
-      </>
+          ))}
+        </section>
+      </main>
     );
   }
 }
