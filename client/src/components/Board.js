@@ -12,6 +12,7 @@ export default class Board extends Component {
     this.state = {
       board: this.props.currentBoard,
     };
+    console.log(this.state.board);
   }
 
   render() {

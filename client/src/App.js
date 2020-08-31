@@ -9,9 +9,9 @@ import BoardController from './components/BoardController';
 import './styles/style.css';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     return (
@@ -26,7 +26,7 @@ export default class App extends Component {
           <Route
             exact
             path='/board/:id'
-            render={() => (
+            render={props => (
               <BoardController
                 currentPage='show'
                 currentId={props.match.params.id}

@@ -14,19 +14,14 @@ export default class BoardController extends Component {
       currentPage: props.currentPage,
       currentId: props.currentId || null,
       dataLoaded: false,
-      allBoards: null,
+      allBoards: boards,
       currentBoard: null,
       fireRedirect: false,
       redirectPath: null,
     };
 
     this.decideWhichToRender = this.decideWhichToRender.bind(this);
-    this.findId = this.findId.bind(this);
-  }
-
-  // Throw away func to find board/id
-  findId(id) {
-    boards.find(board => board.id === id);
+    this.findBoardById = this.findBoardById.bind(this);
   }
 
   componentDidMount() {
@@ -36,10 +31,20 @@ export default class BoardController extends Component {
         dataLoaded: true,
       });
     } else if (this.state.currentPage === 'show') {
+      const foundBoard = this.findBoardById(this.state.currentId);
       this.setState({
-        currentBoard: this.findId(this.state.currentId),
+        currentBoard: foundBoard,
+        dataLoaded: true,
       });
     }
+  }
+
+  // Throw away func to find board/id
+  findBoardById(id) {
+    const foundBoard = this.state.allBoards.find(
+      board => parseInt(board.id) === parseInt(id)
+    );
+    return foundBoard;
   }
 
   decideWhichToRender() {
