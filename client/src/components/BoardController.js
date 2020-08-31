@@ -41,10 +41,9 @@ export default class BoardController extends Component {
 
   // Throw away func to find board/id
   findBoardById(id) {
-    const foundBoard = this.state.allBoards.find(
+    return this.state.allBoards.find(
       board => parseInt(board.id) === parseInt(id)
     );
-    return foundBoard;
   }
 
   decideWhichToRender() {

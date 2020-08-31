@@ -12,7 +12,6 @@ export default class Board extends Component {
     this.state = {
       board: this.props.currentBoard,
     };
-    console.log(this.state.board);
   }
 
   render() {
@@ -30,16 +29,14 @@ export default class Board extends Component {
               </div>
             </div>
             {topics.map(topic => (
-              <>
-                <div className='board-row'>
-                  <GameHeading text={topic.title} />
-                  <div className='board-row-info'>
-                    <p>{topic.topics_count}</p>
-                    <p>530</p>
-                    <p>4 Minutes</p>
-                  </div>
+              <div key={topic.id} className='board-row'>
+                <GameHeading text={topic.title} />
+                <div className='board-row-info'>
+                  <p>{topic.topics_count}</p>
+                  <p>530</p>
+                  <p>4 Minutes</p>
                 </div>
-              </>
+              </div>
             ))}
           </section>
         </main>
