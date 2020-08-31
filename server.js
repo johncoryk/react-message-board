@@ -1,14 +1,37 @@
 const express = require('express');
-const morgan = require('morgan');
+const logger = require('morgan');
+const path = require('path');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcryptjs');
+const session = require('express-session');
 
 const postRouter = require('./routes/post-router');
 
 const app = express();
 
 //Middleware
-app.use(morgan('dev'));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(
+  session({
+    key: process.env.SECRET_KEY,
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.static('public'));
+
+app.use((req, res, next) => {
+  console.log('-------', req.user, req.path);
+  next();
+});
 
 //Setting up PORT
 const PORT = process.env.PORT || 3000;

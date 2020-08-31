@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import SearchGames from './components/SearchGames';
 import BoardController from './components/BoardController';
 
+
 import './styles/style.css';
 
 export default class App extends Component {
