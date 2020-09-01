@@ -43,15 +43,6 @@ class Post {
       .then((post) => Object.assign(this.post));
   }
 
-  static create = (title, created_at) => {
-    return db.one(`
-    INSERT INTO posts
-    (text, created_at)
-    VALUES ($1, $2)
-    RETURNING *
-    `, [post.text, post.created_at]);
-  }
-
   static update(changes) {
    Object.assign(this, changes);
    return db
@@ -67,11 +58,11 @@ class Post {
     .then((post) => Object.assign(this.post));
   }
 
-  static delete = (id) => {
-    return db.one(`
+  delete() {
+    return db.none(`
     DELETE FROM posts
     WHERE id = $1
-    `, id);
+    `, this.id);
   }
   //findbyid
   //create
