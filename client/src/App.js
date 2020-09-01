@@ -7,6 +7,7 @@ import SearchGames from './components/SearchGames';
 import BoardController from './components/BoardController';
 
 import './styles/style.css';
+import Board from './components/Board';
 
 export default class App extends Component {
   // constructor(props) {
@@ -32,6 +33,11 @@ export default class App extends Component {
                 currentId={props.match.params.id}
               />
             )}
+          />
+          <Route
+            exact
+            path='/posts/new'
+            render={() => <BoardController currentPage='new' />}
           />
           <Route
             exact

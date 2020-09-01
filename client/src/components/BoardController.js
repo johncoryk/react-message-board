@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import MainPage from './MainPage';
 import Board from './Board';
 import Topic from './Topic';
+import PostForm from './PostForm';
 
 import { boards, topics } from '../THROW_AWAY_DATA/data';
 
@@ -45,6 +46,10 @@ export default class BoardController extends Component {
         currentTopic: foundTopic,
         dataLoaded: true,
       });
+    } else if (this.state.currentPage === 'new') {
+      this.setState({
+        dataLoaded: true,
+      });
     }
   }
 
@@ -69,6 +74,8 @@ export default class BoardController extends Component {
         return <Board currentBoard={this.state.currentBoard} />;
       case 'topic':
         return <Topic currentTopic={this.state.currentTopic} />;
+      case 'new':
+        return <PostForm />;
       default:
         return <Redirect push to='/' />;
     }
