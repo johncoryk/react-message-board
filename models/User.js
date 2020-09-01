@@ -20,6 +20,33 @@ class User {
         return users.map(user => new this(user));
       });
   }
+
+  static findById = (id) => {
+    return db.oneOrNone(`
+      SELECT * FROM users
+      WHERE id = $1
+    `, [id]);
+  }
+
+  static create = (user_name, password_digest, email, created_at) => {
+    return db.one(`
+    INSERT INTO users
+    (user_name, password_digest, email, created_at)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *
+    `, [users.user_name, users.password_digest, users.email, users.created_at]);
+  }
+
+  static delete = (id) => {
+    return db.one(`
+    DELETE FROM users
+    WHERE id = $1
+    `, [id]);
+  }
+  //getbyid
+  //create
+  //**hold off on update */
+  //delete
 }
 
 module.exports = User;
