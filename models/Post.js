@@ -4,7 +4,6 @@ class Post {
   constructor(post) {
     this.id = post.id || null;
     this.created_at = post.created_at;
-    this.created_on = post.created_on;
     this.text = post.text;
     this.user_id = post.user_id;
     this.topic_id = post.topic_id;
@@ -14,7 +13,7 @@ class Post {
     return db
       .manyOrNone(
         `SELECT * FROM posts
-      ORDER BY created_on ASC`
+      ORDER BY created_at ASC`
       )
       .then(posts => {
         return posts.map(post => new this(post));
@@ -25,37 +24,47 @@ class Post {
     return db.oneOrNone(`
       SELECT * FROM posts
       WHERE id = $1
-    `, [id]);
+    `, id)
+    .then((post)=> {
+      if (post) return new this (post);
+      throw new Error (`Post ${id} not found`);
+    });
   }
 
-  static create = (title, created_at) => {
-    return db.one(`
-    INSERT INTO posts
-    (text, created_at)
-    VALUES ($1, $2)
-    RETURNING *
-    `, [post.text, post.created_at]);
+  save() {
+    return db
+      .one(
+        `INSERT INTO posts
+        (text, created_at)
+        VALUES ($/text/, $/created_at/)
+        RETURNING *`,
+        this
+      )
+      .then((post) => Object.assign(post));
   }
 
-  static update = (text) => {
-    return db.one(`
-    UPDATE posts SET
-    text = $1
-    WHERE id = $2
-    RETURNING *
-    `, [post.text, id]);
+  static update(changes) {
+   Object.assign(this, changes);
+   return db
+    .one(
+      `
+      UPDATE posts SET
+      text = $/text/
+      created_at = $/created_at/
+      RETURNING *
+      `,
+      this
+    )
+    .then((post) => Object.assign(post));
   }
 
-  static delete = (id) => {
-    return db.one(`
+  delete() {
+    return db.none(`
     DELETE FROM posts
     WHERE id = $1
-    `, [id]);
+    `, this.id);
   }
-  //findbyid
-  //create
-  //update
-  //delete
+  
 }
 
 module.exports = Post;

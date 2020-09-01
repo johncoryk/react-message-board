@@ -25,7 +25,23 @@ class User {
     return db.oneOrNone(`
       SELECT * FROM users
       WHERE id = $1
-    `, [id]);
+    `, [id])
+    .then((user) => {
+      if (user) return new this (user);
+      throw new Error (`User ${id} not found`);
+    });
+  }
+
+  save () {
+    return db
+      .one(
+        `INSERT INTO users
+        (user_name, password_digest, email, created_at)
+        VALUES ($/user_name/, $/password_digest/, $/email/, $/created_at/)
+        RETURNING *`,
+        this
+      )
+      .then((user)=> Object.assign(this.user));
   }
 
   static create = (user_name, password_digest, email, created_at) => {
@@ -34,14 +50,14 @@ class User {
     (user_name, password_digest, email, created_at)
     VALUES ($1, $2, $3, $4)
     RETURNING *
-    `, [users.user_name, users.password_digest, users.email, users.created_at]);
+    `, [user_name, password_digest, email, created_at]);
   }
 
-  static delete = (id) => {
+  static delete = () => {
     return db.one(`
     DELETE FROM users
     WHERE id = $1
-    `, [id]);
+    `, id);
   }
   //getbyid
   //create
