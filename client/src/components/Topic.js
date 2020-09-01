@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
@@ -20,7 +21,9 @@ export default class Topic extends Component {
       <main>
         <LargeHeading text={this.state.topic.title} />
         <SubHeading text='Board' color='var(--alt-gray)' />
-        <Button text='Post New Message' color='default' />
+        <Link to={`/topic/${this.state.topic.id}/new`}>
+          <Button text='Post New Message' color='default' />
+        </Link>
         <div className='topics-container'>
           {posts.map(post => (
             <div key={post.id} className='post-row'>
