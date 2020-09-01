@@ -35,6 +35,16 @@ export default class App extends Component {
           />
           <Route
             exact
+            path='/topic/:id/new'
+            render={props => (
+              <BoardController
+                currentPage='new'
+                currentId={props.match.params.id}
+              />
+            )}
+          />
+          <Route
+            exact
             path='/topic/:id'
             render={props => (
               <BoardController
