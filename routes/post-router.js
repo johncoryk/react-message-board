@@ -1,4 +1,3 @@
-const express = require('express')
 const postRouter = require('express').Router();
 const postController = require('../controllers/post-controller');
 
@@ -7,6 +6,6 @@ postRouter.post('/', postController.create);
 
 postRouter.get('/:id', postController.show);
 postRouter.put('/:id', postController.update);
-postRouter.delete('/:id',postController.delete);
+postRouter.delete('/:id', postController.delete);
 
 module.exports = postRouter;
