@@ -21,6 +21,10 @@ class Topic {
         return topics.map(topic => new this(topic));
       });
   }
+  //findbyid
+  //create
+  //update **not user facing
+  //delete **not user facing
 }
 
 module.exports =Topic;

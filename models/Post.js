@@ -20,6 +20,11 @@ class Post {
         return posts.map(post => new this(post));
       });
   }
+
+  //findbyid
+  //create
+  //update
+  //delete
 }
 
 module.exports = Post;

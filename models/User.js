@@ -20,6 +20,11 @@ class User {
         return users.map(user => new this(user));
       });
   }
+
+  //getbyid
+  //create
+  //**hold off on update */
+  //delete
 }
 
 module.exports = User;
