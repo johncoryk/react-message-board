@@ -13,7 +13,7 @@ class Post {
     return db
       .manyOrNone(
         `SELECT * FROM posts
-      ORDER BY created_on ASC`
+      ORDER BY created_at ASC`
       )
       .then(posts => {
         return posts.map(post => new this(post));
@@ -40,7 +40,7 @@ class Post {
         RETURNING *`,
         this
       )
-      .then((post) => Object.assign(this.post));
+      .then((post) => Object.assign(post));
   }
 
   static update(changes) {
@@ -55,7 +55,7 @@ class Post {
       `,
       this
     )
-    .then((post) => Object.assign(this.post));
+    .then((post) => Object.assign(post));
   }
 
   delete() {
@@ -64,10 +64,7 @@ class Post {
     WHERE id = $1
     `, this.id);
   }
-  //findbyid
-  //create
-  //update
-  //delete
+  
 }
 
 module.exports = Post;

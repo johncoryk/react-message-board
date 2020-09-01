@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS boards
 (id SERIAL PRIMARY KEY,
 title VARCHAR(255) NOT NULL,
-created_at TIMESTAMPTZ,
+created_at TIMESTAMP,
 user_id INTEGER);

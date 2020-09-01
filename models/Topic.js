@@ -6,8 +6,6 @@ class Topic {
     this.title = topic.title;
     this.user_id = topic.user_id;
     this.board_id = topic.board_id;
-    this.posts_count = topic.posts_count;
-    this.created_on = topic.created_on;
     this.created_at = topic.created_at;
   }
 
@@ -15,7 +13,7 @@ class Topic {
     return db
       .manyOrNone(
         `SELECT * FROM topics
-      ORDER BY created_on ASC`
+      ORDER BY created_at ASC`
       )
       .then(topics => {
         return topics.map(topic => new this(topic));
@@ -26,37 +24,47 @@ class Topic {
     return db.oneOrNone(`
       SELECT * FROM topics
       WHERE id = $1
-    `, [id]);
+    `, id)
+    .then((topic)=> {
+      if (topic) return new this (topic);
+      throw new Error (`Topic ${id} not found`)
+    })
   }
 
-  static create = (title, created_at) => {
-    return db.one(`
-    INSERT INTO topics
-    (text, created_at)
-    VALUES ($1, $2)
-    RETURNING *
-    `, [topic.text, topic.created_at]);
+  save(){
+    return db
+      .one(
+        `INSERT INTO topics
+        (title, created_at)
+        VALUES ($/title/, $/created_at/)
+        RETURNING *`,
+        this
+      )
+      .then((topic) => Object.assign(topic));
   }
 
-  static update = (title) => {
-    return db.one(`
-    UPDATE topics SET
-    title = $1
-    WHERE id = $2
-    RETURNING *
-    `, [title.text, id]);
-  }
+  static update(changes) {
+    Object.assign(this, changes);
+    return db
+     .one(
+       `
+       UPDATE topics SET
+       text = $/title/
+       created_at = $/created_at/
+       RETURNING *
+       `,
+       this
+     )
+     .then((topic) => Object.assign(topic));
+   }
 
-  static delete = (id) => {
-    return db.one(`
+  delete () {
+    return db.none(`
     DELETE FROM topics
     WHERE id = $1
-    `, [id]);
+    `, this.id);
   }
-  //findbyid
-  //create
-  //update **not user facing
-  //delete **not user facing
+  
 }
 
 module.exports =Topic;
