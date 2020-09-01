@@ -21,6 +21,38 @@ class Topic {
         return topics.map(topic => new this(topic));
       });
   }
+
+  static findById = (id) => {
+    return db.oneOrNone(`
+      SELECT * FROM topics
+      WHERE id = $1
+    `, [id]);
+  }
+
+  static create = (title, created_at) => {
+    return db.one(`
+    INSERT INTO topics
+    (text, created_at)
+    VALUES ($1, $2)
+    RETURNING *
+    `, [topic.text, topic.created_at]);
+  }
+
+  static update = (title) => {
+    return db.one(`
+    UPDATE topics SET
+    title = $1
+    WHERE id = $2
+    RETURNING *
+    `, [title.text, id]);
+  }
+
+  static delete = (id) => {
+    return db.one(`
+    DELETE FROM topics
+    WHERE id = $1
+    `, [id]);
+  }
   //findbyid
   //create
   //update **not user facing
