@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
+import LargeHeading from './utility/LargeHeading';
+import SubHeading from './utility/SubHeading';
+
 export default class PostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: null,
+      topic: this.props.currentTopic,
+      text: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -19,21 +23,12 @@ export default class PostForm extends Component {
 
   render() {
     return (
-      <div className='add'>
+      <main>
+        <LargeHeading text={this.state.topic.title} />
+        <SubHeading text='Board' color='var(--alt-gray)' />
         <form
-          // className={this.props.isAdd ? 'addform' : 'editform'}
-          // onSubmit={
-          //   this.props.isAdd
-          //     ? e => this.props.iceCreamSubmit('POST', e, this.state)
-          //     : e =>
-          //         this.props.iceCreamSubmit(
-          //           'PUT',
-          //           e,
-          //           this.state,
-          //           this.props.icecream.id
-          //         )
-          // }
-          onSubmit={() => {
+          onSubmit={e => {
+            e.preventDefault();
             console.log(this.state.text);
           }}
         >
@@ -47,7 +42,7 @@ export default class PostForm extends Component {
 
           <input type='submit' value='Submit' />
         </form>
-      </div>
+      </main>
     );
   }
 }

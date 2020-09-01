@@ -47,7 +47,9 @@ export default class BoardController extends Component {
         dataLoaded: true,
       });
     } else if (this.state.currentPage === 'new') {
+      const foundTopic = this.findTopicById(this.state.currentId);
       this.setState({
+        currentTopic: foundTopic,
         dataLoaded: true,
       });
     }
@@ -75,7 +77,7 @@ export default class BoardController extends Component {
       case 'topic':
         return <Topic currentTopic={this.state.currentTopic} />;
       case 'new':
-        return <PostForm />;
+        return <PostForm currentTopic={this.state.currentTopic} />;
       default:
         return <Redirect push to='/' />;
     }
