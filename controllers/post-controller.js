@@ -28,15 +28,6 @@ postController.create = (req, res, next) => {
   try {
     new Post({
       text: req.body.data,
-  new Post({
-    text: req.body.text
-  })
-    .save()
-    .then((post) => {
-      res.json({
-        message: 'Post added successfully!',
-        data: { post },
-      });
     })
       .save()
       .then(post => {
