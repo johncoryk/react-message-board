@@ -44,21 +44,26 @@ class User {
       .then((user)=> Object.assign(this.user));
   }
 
-  static create = (user_name, password_digest, email, created_at) => {
-    return db.one(`
-    INSERT INTO users
-    (user_name, password_digest, email, created_at)
-    VALUES ($1, $2, $3, $4)
-    RETURNING *
-    `, [user_name, password_digest, email, created_at]);
-  }
-
-  static delete = () => {
-    return db.one(`
-    DELETE FROM users
-    WHERE id = $1
-    `, id);
-  }
+  static update(changes) {
+    Object.assign(this, changes);
+    return db
+     .one(
+       `
+       UPDATE users SET
+       user_name = $/user_name/
+       RETURNING *
+       `,
+       this
+     )
+     .then((user) => Object.assign(user));
+   }
+ 
+   delete() {
+     return db.none(`
+     DELETE FROM users
+     WHERE id = $1
+     `, this.id);
+   }
   //getbyid
   //create
   //**hold off on update */

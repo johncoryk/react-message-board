@@ -32,11 +32,12 @@ class Post {
   }
 
   save() {
+    //save the userid, topics and need change to make sure entire thing works
     return db
       .one(
         `INSERT INTO posts
-        (text, created_at)
-        VALUES ($/text/, $/created_at/)
+        (text)
+        VALUES ($/text/)
         RETURNING *`,
         this
       )
@@ -50,7 +51,6 @@ class Post {
       `
       UPDATE posts SET
       text = $/text/
-      created_at = $/created_at/
       RETURNING *
       `,
       this
