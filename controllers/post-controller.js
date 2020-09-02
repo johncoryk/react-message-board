@@ -26,8 +26,7 @@ postController.show = (req, res, next) => {
 
 postController.create = (req, res, next) => {
   new Post({
-    text: req.body.text,
-    created_at: req.body.created_at
+    text: req.body.text
   })
     .save()
     .then((post) => {
