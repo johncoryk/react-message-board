@@ -6,8 +6,6 @@ class Board {
   constructor(board) {
     this.id = board.id || null;
     this.title = board.title;
-    this.topics_count = board.topics_count;
-    this.created_on = board.created_on;
     this.created_at = board.created_at;
     this.user_id = board.user_id;
   }
@@ -16,7 +14,7 @@ class Board {
     return db
       .manyOrNone(
         `SELECT * FROM boards
-      ORDER BY created_on ASC`
+      ORDER BY created_at ASC`
       )
       .then(boards => {
         return boards.map(board => new this(board));
@@ -27,23 +25,39 @@ class Board {
     return db.oneOrNone(`
       SELECT * FROM boards
       WHERE id = $1
-    `, [id]);
+    `, id)
+    .then((board)=> {
+      if (board) return new this (board);
+      throw new Error (`Board ${id} not found`);
+    });
   }
-
-  static create = (title, created_at) => {
-    return db.one(`
-    INSERT INTO boards
-    (title, created_at)
-    VALUES ($1, $2)
-    RETURNING *
-    `, [board.title, board.created_at]);
-  }
-
-  static upddate
   
-  //create
-  //update** not user facing
-  //delete** not user facing
+  save() {
+    return db
+      .one(
+        `INSERT INTO boards
+        (title, created_at)
+        VALUES ($/title/, $/created_at/)
+        RETURNING *`,
+        this
+      )
+      .then((board) => Object.assign(board));
+  }
+
+  static update(changes) {
+    Object.assign(this, changes);
+    return db
+     .one(
+       `
+       UPDATE boards SET
+       title = $/title/
+       created_at = $/created_at/
+       RETURNING *
+       `,
+       this
+     )
+     .then((board) => Object.assign(board));
+   }
 }
 
 module.exports = Board;
