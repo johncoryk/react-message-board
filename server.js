@@ -7,13 +7,16 @@ const passport = require('passport');
 // const session = require('express-session');
 
 const postRouter = require('./routes/post-router');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 //Middleware
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // app.use(
 //   session({

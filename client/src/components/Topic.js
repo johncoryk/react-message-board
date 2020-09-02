@@ -14,6 +14,8 @@ export default class Topic extends Component {
       topic: this.props.currentTopic,
       posts: null,
     };
+
+    this.postSubmit = this.postSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +27,26 @@ export default class Topic extends Component {
           posts: data.data,
         });
       });
+  }
+
+  postSubmit(method, event, data, id) {
+    event.preventDefault();
+    console.log(data);
+    fetch(`/api/posts/${id || ''}`, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          posts: [...this.state.posts, data.data.post],
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -50,7 +72,7 @@ export default class Topic extends Component {
               ))
             : 'Loading posts...'}
         </div>
-        <PostForm topic={this.state.topic} postSubmit={this.props.postSubmit} />
+        <PostForm topic={this.state.topic} postSubmit={this.postSubmit} />
       </main>
     );
   }

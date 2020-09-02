@@ -20,7 +20,7 @@ export default class PostForm extends Component {
   }
 
   addNewPost(e) {
-    console.log(this.state.text);
+    console.log('postform', this.state.text);
     this.props.postSubmit('POST', e, this.state.text);
     this.setState({
       text: '',
@@ -38,7 +38,7 @@ export default class PostForm extends Component {
           onChange={this.handleInputChange}
         ></textarea>
 
-        <input type='submit' value='Submit' onClick={e => this.addNewPost(e)} />
+        <input type='submit' value='Submit' />
       </form>
     );
   }

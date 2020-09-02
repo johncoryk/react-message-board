@@ -25,9 +25,10 @@ postController.show = (req, res, next) => {
 };
 
 postController.create = (req, res, next) => {
+  console.log(req.body);
   try {
     new Post({
-      text: req.body.text,
+      text: req.body.data,
     })
       .save()
       .then(post => {
