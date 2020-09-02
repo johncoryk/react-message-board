@@ -6,14 +6,24 @@ import SubHeading from './utility/SubHeading';
 import GameHeading from './utility/GameHeading';
 import Button from './utility/Button';
 
-import { posts } from '../THROW_AWAY_DATA/data';
-
 export default class Topic extends Component {
   constructor(props) {
     super(props);
     this.state = {
       topic: this.props.currentTopic,
+      posts: null,
     };
+  }
+
+  componentDidMount() {
+    fetch('/api/posts')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.data);
+        this.setState({
+          posts: data.data,
+        });
+      });
   }
 
   render() {
@@ -25,17 +35,19 @@ export default class Topic extends Component {
           <Button text='Post New Message' color='default' />
         </Link>
         <div className='topics-container'>
-          {posts.map(post => (
-            <div key={post.id} className='post-row'>
-              <div className='post-header'>
-                <GameHeading text={post.user} />
-                <p>#1</p>
-              </div>
-              <div className='post-body'>
-                <p>{post.body}</p>
-              </div>
-            </div>
-          ))}
+          {this.state.posts
+            ? this.state.posts.map(post => (
+                <div key={post.id} className='post-row'>
+                  <div className='post-header'>
+                    <GameHeading text={post.user} />
+                    <p>#1</p>
+                  </div>
+                  <div className='post-body'>
+                    <p>{post.body}</p>
+                  </div>
+                </div>
+              ))
+            : 'Loading posts...'}
         </div>
       </main>
     );

@@ -28,11 +28,6 @@ app.use(passport.session());
 
 app.use(express.static('public'));
 
-app.use((req, res, next) => {
-  console.log('-------', req.user, req.path);
-  next();
-});
-
 //Setting up PORT
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
@@ -41,7 +36,7 @@ app.get('/', (req, res) => {
   res.send('Server is working!');
 });
 
-app.use('/posts', postRouter);
+app.use('/api/posts', postRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send({
