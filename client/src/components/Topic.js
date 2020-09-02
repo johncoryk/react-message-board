@@ -36,14 +36,14 @@ export default class Topic extends Component {
         </Link>
         <div className='topics-container'>
           {this.state.posts
-            ? this.state.posts.map(post => (
+            ? this.state.posts.map((post, i) => (
                 <div key={post.id} className='post-row'>
                   <div className='post-header'>
                     <GameHeading text={post.user} />
-                    <p>#1</p>
+                    <p>#{i + 1}</p>
                   </div>
                   <div className='post-body'>
-                    <p>{post.body}</p>
+                    <p>{post.text}</p>
                   </div>
                 </div>
               ))
