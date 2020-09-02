@@ -58,14 +58,6 @@ class Board {
      )
      .then((board) => Object.assign(board));
    }
-      
-  
-
-  
-
-  
-  
-
 }
 
 module.exports = Board;
