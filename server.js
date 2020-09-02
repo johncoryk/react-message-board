@@ -1,19 +1,22 @@
 const express = require('express');
 const logger = require('morgan');
-const path = require('path');
 const passport = require('passport');
-const cookieParser = require('cookie-parser');
-const bcrypt = require('bcryptjs');
-const session = require('express-session');
+// const path = require('path');
+// const cookieParser = require('cookie-parser');
+// const bcrypt = require('bcryptjs');
+// const session = require('express-session');
 
 const postRouter = require('./routes/post-router');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 //Middleware
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // app.use(
 //   session({
@@ -23,25 +26,20 @@ app.use(express.urlencoded({ extended: false }));
 //     saveUninitialized: true,
 //   })
 // );
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use(express.static('public'));
 
-app.use((req, res, next) => {
-  console.log('-------', req.user, req.path);
-  next();
-});
-
 //Setting up PORT
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 app.get('/', (req, res) => {
   res.send('Server is working!');
 });
 
-app.use('/posts', postRouter);
+app.use('/api/posts', postRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send({

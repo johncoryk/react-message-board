@@ -4,10 +4,10 @@ const postController = {};
 
 postController.index = (req, res, next) => {
   Post.getAll()
-    .then((posts) => {
-      res.json({
+    .then(posts => {
+      res.status(200).json({
         message: 'ok',
-        data: { posts },
+        data: posts,
       });
     })
     .catch(next);
@@ -15,7 +15,7 @@ postController.index = (req, res, next) => {
 
 postController.show = (req, res, next) => {
   Post.getById(req.params.id)
-    .then((post) => {
+    .then(post => {
       res.json({
         message: 'ok',
         data: { post },
@@ -25,6 +25,9 @@ postController.show = (req, res, next) => {
 };
 
 postController.create = (req, res, next) => {
+  try {
+    new Post({
+      text: req.body.data,
   new Post({
     text: req.body.text
   })
@@ -35,18 +38,30 @@ postController.create = (req, res, next) => {
         data: { post },
       });
     })
-    .catch(next);
+      .save()
+      .then(post => {
+        res.status(201).json({
+          message: 'Post added!',
+          data: {
+            post,
+          },
+        });
+      })
+      .catch(next);
+  } catch (err) {
+    return next(err);
+  }
 };
 
 postController.update = (req, res, next) => {
   Post.getById(req.params.id)
-    .then((post) =>
+    .then(post =>
       post.update({
         text: req.body.text,
         created_at: req.body.created_at,
       })
     )
-    .then((post) => {
+    .then(post => {
       res.json({
         message: 'Post updated successfully!',
         data: { post },
@@ -57,7 +72,7 @@ postController.update = (req, res, next) => {
 
 postController.delete = (req, res, next) => {
   Post.getById(req.params.id)
-    .then((post) => post.delete())
+    .then(post => post.delete())
     .then(() => {
       res.json({
         message: 'Post deleted successfully!',

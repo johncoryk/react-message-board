@@ -20,16 +20,20 @@ class Post {
       });
   }
 
-  static findById = (id) => {
-    return db.oneOrNone(`
+  static findById = id => {
+    return db
+      .oneOrNone(
+        `
       SELECT * FROM posts
       WHERE id = $1
-    `, id)
-    .then((post)=> {
-      if (post) return new this (post);
-      throw new Error (`Post ${id} not found`);
-    });
-  }
+    `,
+        id
+      )
+      .then(post => {
+        if (post) return new this(post);
+        throw new Error(`Post ${id} not found`);
+      });
+  };
 
   save() {
     //save the userid, topics and need change to make sure entire thing works
@@ -41,30 +45,32 @@ class Post {
         RETURNING *`,
         this
       )
-      .then((post) => Object.assign(post));
+      .then(post => Object.assign(post));
   }
 
   static update(changes) {
-   Object.assign(this, changes);
-   return db
-    .one(
-      `
+    Object.assign(this, changes);
+    return db
+      .one(
+        `
       UPDATE posts SET
       text = $/text/
       RETURNING *
       `,
-      this
-    )
-    .then((post) => Object.assign(post));
+        this
+      )
+      .then(post => Object.assign(post));
   }
 
   delete() {
-    return db.none(`
+    return db.none(
+      `
     DELETE FROM posts
     WHERE id = $1
-    `, this.id);
+    `,
+      this.id
+    );
   }
-  
 }
 
 module.exports = Post;

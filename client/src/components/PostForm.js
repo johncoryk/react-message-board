@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 
-import LargeHeading from './utility/LargeHeading';
-import SubHeading from './utility/SubHeading';
-
 export default class PostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topic: this.props.currentTopic,
+      topic: this.props.topic,
       text: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.addNewPost = this.addNewPost.bind(this);
   }
 
   handleInputChange(e) {
@@ -21,28 +19,27 @@ export default class PostForm extends Component {
     });
   }
 
+  addNewPost(e) {
+    console.log('postform', this.state.text);
+    this.props.postSubmit('POST', e, this.state.text);
+    this.setState({
+      text: '',
+    });
+  }
+
   render() {
     return (
-      <main>
-        <LargeHeading text={this.state.topic.title} />
-        <SubHeading text='Board' color='var(--alt-gray)' />
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            console.log(this.state.text);
-          }}
-        >
-          <textarea
-            name='text'
-            cols='30'
-            rows='10'
-            value={this.state.text}
-            onChange={this.handleInputChange}
-          ></textarea>
+      <form className='post-form' onSubmit={e => this.addNewPost(e)}>
+        <textarea
+          name='text'
+          cols='30'
+          rows='10'
+          value={this.state.text}
+          onChange={this.handleInputChange}
+        ></textarea>
 
-          <input type='submit' value='Submit' />
-        </form>
-      </main>
+        <input type='submit' value='Submit' />
+      </form>
     );
   }
 }
