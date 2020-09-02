@@ -5,7 +5,6 @@ import { Redirect } from 'react-router-dom';
 import MainPage from './MainPage';
 import Board from './Board';
 import Topic from './Topic';
-import PostForm from './PostForm';
 
 import { boards, topics } from '../THROW_AWAY_DATA/data';
 
@@ -26,6 +25,7 @@ export default class BoardController extends Component {
 
     this.decideWhichToRender = this.decideWhichToRender.bind(this);
     this.findBoardById = this.findBoardById.bind(this);
+    this.postSubmit = this.postSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +55,18 @@ export default class BoardController extends Component {
     }
   }
 
+  postSubmit(method, event, data, id) {
+    event.preventDefault();
+    console.log(data);
+    fetch(`/api/posts/${id || ''}`, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).catch(err => console.log(err));
+  }
+
   // Throw away func to find board/id
   findBoardById(id) {
     return this.state.allBoards.find(
@@ -75,9 +87,12 @@ export default class BoardController extends Component {
       case 'show':
         return <Board currentBoard={this.state.currentBoard} />;
       case 'topic':
-        return <Topic currentTopic={this.state.currentTopic} />;
-      case 'new':
-        return <PostForm currentTopic={this.state.currentTopic} />;
+        return (
+          <Topic
+            postSubmit={this.postSubmit}
+            currentTopic={this.state.currentTopic}
+          />
+        );
       default:
         return <Redirect push to='/' />;
     }

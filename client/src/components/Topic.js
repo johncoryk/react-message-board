@@ -5,6 +5,7 @@ import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
 import GameHeading from './utility/GameHeading';
 import Button from './utility/Button';
+import PostForm from './PostForm';
 
 export default class Topic extends Component {
   constructor(props) {
@@ -49,6 +50,7 @@ export default class Topic extends Component {
               ))
             : 'Loading posts...'}
         </div>
+        <PostForm topic={this.state.topic} postSubmit={this.props.postSubmit} />
       </main>
     );
   }

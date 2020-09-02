@@ -25,18 +25,23 @@ postController.show = (req, res, next) => {
 };
 
 postController.create = (req, res, next) => {
-  new Post({
-    text: req.body.text,
-    created_at: req.body.created_at,
-  })
-    .save()
-    .then(post => {
-      res.json({
-        message: 'Post added successfully!',
-        data: { post },
-      });
+  try {
+    new Post({
+      text: req.body.text,
     })
-    .catch(next);
+      .save()
+      .then(post => {
+        res.status(201).json({
+          message: 'Post added!',
+          data: {
+            post,
+          },
+        });
+      })
+      .catch(next);
+  } catch (err) {
+    return next(err);
+  }
 };
 
 postController.update = (req, res, next) => {
