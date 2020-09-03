@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 
-export default class PostForm extends Component {
+export default class TopicCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topic: this.props.topic,
-      text: '',
+      title: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.addNewPost = this.addNewPost.bind(this);
+    this.addNewTopic = this.addNewTopic.bind(this);
   }
 
   handleInputChange(e) {
@@ -19,24 +18,22 @@ export default class PostForm extends Component {
     });
   }
 
-  addNewPost(e) {
-    console.log('postform', this.state.text);
-    this.props.postSubmit('POST', e, this.state.text);
+  addNewTopic(e) {
+    this.props.topicSubmit('POST', e, this.state.title);
     this.setState({
-      text: '',
+      title: '',
     });
   }
 
   render() {
     return (
       <form className='post-form' onSubmit={e => this.addNewPost(e)}>
-        <textarea
-          name='text'
-          cols='30'
-          rows='10'
-          value={this.state.text}
+        <input
+          type='text'
+          name='title'
+          value={this.state.title}
           onChange={this.handleInputChange}
-        ></textarea>
+        />
 
         <input type='submit' value='Submit' />
       </form>

@@ -43,6 +43,16 @@ export default class App extends Component {
               />
             )}
           />
+          <Route
+            exact
+            path='/topic/new'
+            render={props => (
+              <BoardController
+                currentPage='new topic'
+                currentId={props.match.params.id}
+              />
+            )}
+          />
           <Route exact path='/game-search' component={SearchGames} />
         </div>
         <Footer />

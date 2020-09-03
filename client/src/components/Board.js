@@ -57,6 +57,7 @@ export default class Board extends Component {
                 </div>
               ))
             : 'Topics loading...'}
+          <Link to='/topic/new'>Create New Topic</Link>
         </section>
       </main>
     );
