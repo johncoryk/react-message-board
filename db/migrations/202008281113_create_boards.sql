@@ -2,4 +2,4 @@ CREATE TABLE IF NOT EXISTS boards
 (id SERIAL PRIMARY KEY,
 title VARCHAR(255) NOT NULL,
 created_at TIMESTAMP,
-user_id INTEGER);
+user_id INTEGER REFERENCES users(id));
