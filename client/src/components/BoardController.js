@@ -6,8 +6,6 @@ import MainPage from './MainPage';
 import Board from './Board';
 import Topic from './Topic';
 
-import { boards } from '../THROW_AWAY_DATA/data';
-
 export default class BoardController extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +14,7 @@ export default class BoardController extends Component {
       currentId: props.currentId || null,
       currentBoard: null,
       currentTopic: null,
-      allBoards: boards,
+      allBoards: null,
       allTopics: null,
       dataLoaded: false,
       fireRedirect: false,
@@ -29,16 +27,23 @@ export default class BoardController extends Component {
 
   componentDidMount() {
     if (this.state.currentPage === 'index') {
-      this.setState({
-        allBoards: boards,
-        dataLoaded: true,
-      });
+      fetch('/api/boards')
+        .then(res => res.json())
+        .then(data => {
+          this.setState({
+            allBoards: data.data.boards,
+            dataLoaded: true,
+          });
+        });
     } else if (this.state.currentPage === 'show') {
-      const foundBoard = this.findBoardById(this.state.currentId);
-      this.setState({
-        currentBoard: foundBoard,
-        dataLoaded: true,
-      });
+      fetch(`/api/boards/${this.state.currentId}`)
+        .then(res => res.json())
+        .then(data => {
+          this.setState({
+            currentBoard: data.data.board,
+            dataLoaded: true,
+          });
+        });
     } else if (this.state.currentPage === 'topic') {
       fetch('/api/topics')
         .then(res => res.json())

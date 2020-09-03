@@ -1,8 +1,7 @@
-const express = require('express')
 const boardRouter = require('express').Router();
 const boardController = require('../controllers/board-controller');
 
-boardRouter.get('/', boardRouter.index);
+boardRouter.get('/', boardController.index);
 boardRouter.post('/', boardController.create);
 
 boardRouter.get('/:id', boardController.show);

@@ -28,18 +28,20 @@ export default class MainPage extends Component {
                 <SubHeading text='Last Post' />
               </div>
             </div>
-            {this.state.allBoards.map(board => (
-              <div key={board.id} className='board-row'>
-                <Link to={`/board/${board.id}`}>
-                  <GameHeading text={board.title} />
-                </Link>
-                <div className='board-row-info'>
-                  <p>{board.topics_count}</p>
-                  <p>530</p>
-                  <p>4 Minutes</p>
-                </div>
-              </div>
-            ))}
+            {this.state.allBoards
+              ? this.state.allBoards.map(board => (
+                  <div key={board.id} className='board-row'>
+                    <Link to={`/board/${board.id}`}>
+                      <GameHeading text={board.title} />
+                    </Link>
+                    <div className='board-row-info'>
+                      <p>{board.topics_count}</p>
+                      <p>530</p>
+                      <p>4 Minutes</p>
+                    </div>
+                  </div>
+                ))
+              : 'Boards loading...'}
           </section>
         </main>
       </>
