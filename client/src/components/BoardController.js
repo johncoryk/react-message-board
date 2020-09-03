@@ -6,7 +6,7 @@ import MainPage from './MainPage';
 import Board from './Board';
 import Topic from './Topic';
 
-import { boards, topics } from '../THROW_AWAY_DATA/data';
+import { boards } from '../THROW_AWAY_DATA/data';
 
 export default class BoardController extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class BoardController extends Component {
       currentBoard: null,
       currentTopic: null,
       allBoards: boards,
-      allTopics: topics,
+      allTopics: null,
       dataLoaded: false,
       fireRedirect: false,
       redirectPath: null,
