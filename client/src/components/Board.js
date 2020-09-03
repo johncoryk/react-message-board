@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
 import GameHeading from './utility/GameHeading';
+import TopicCreate from './TopicCreate';
 
 export default class Board extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class Board extends Component {
     };
 
     this.getTopics = this.getTopics.bind(this);
+    this.topicSubmit = this.topicSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -31,10 +33,31 @@ export default class Board extends Component {
       });
   }
 
+  topicSubmit(method, event, data, id) {
+    event.preventDefault();
+    console.log('submit', data);
+    fetch(`/api/topics/${id || ''}`, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          topics: [...this.state.topics, data.data.topic],
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <main className='boards-container'>
         <LargeHeading text={this.state.board.title} />
+        <TopicCreate topicSubmit={this.topicSubmit} />
         <section className='boards-table'>
           <div className='table-header'>
             <SubHeading text='Topics' />

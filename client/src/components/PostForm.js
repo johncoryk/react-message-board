@@ -29,11 +29,7 @@ export default class PostForm extends Component {
 
   render() {
     return (
-      <form
-        ref={this.inputRef}
-        className='post-form'
-        onSubmit={e => this.addNewPost(e)}
-      >
+      <form className='post-form' onSubmit={e => this.addNewPost(e)}>
         <textarea
           name='text'
           cols='30'

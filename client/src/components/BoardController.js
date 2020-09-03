@@ -51,12 +51,6 @@ export default class BoardController extends Component {
             dataLoaded: true,
           });
         });
-    } else if (this.state.currentPage === 'new') {
-      const foundTopic = this.findTopicById(this.state.currentId);
-      this.setState({
-        currentTopic: foundTopic,
-        dataLoaded: true,
-      });
     }
   }
 
