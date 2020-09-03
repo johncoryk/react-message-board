@@ -19,6 +19,7 @@ export default class TopicCreate extends Component {
   }
 
   addNewTopic(e) {
+    console.log(this.state.title);
     this.props.topicSubmit('POST', e, this.state.title);
     this.setState({
       title: '',
@@ -27,7 +28,7 @@ export default class TopicCreate extends Component {
 
   render() {
     return (
-      <form className='post-form' onSubmit={e => this.addNewPost(e)}>
+      <form className='post-form' onSubmit={e => this.addNewTopic(e)}>
         <input
           type='text'
           name='title'

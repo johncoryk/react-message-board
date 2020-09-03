@@ -26,13 +26,15 @@ topicController.show = (req, res, next) => {
 
 topicController.create = (req, res, next) => {
   new Topic({
-    title: req.body.title,
+    title: req.body.data,
   })
     .save()
     .then(topic => {
-      res.json({
+      res.status(201).json({
         message: 'Topic added successfully!',
-        data: { topic },
+        data: {
+          topic,
+        },
       });
     })
     .catch(next);

@@ -5,7 +5,6 @@ import { Redirect } from 'react-router-dom';
 import MainPage from './MainPage';
 import Board from './Board';
 import Topic from './Topic';
-import TopicCreate from './TopicCreate';
 
 import { boards } from '../THROW_AWAY_DATA/data';
 
@@ -26,7 +25,6 @@ export default class BoardController extends Component {
 
     this.decideWhichToRender = this.decideWhichToRender.bind(this);
     this.findBoardById = this.findBoardById.bind(this);
-    this.topicSubmit = this.topicSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -53,34 +51,7 @@ export default class BoardController extends Component {
             dataLoaded: true,
           });
         });
-    } else if (this.state.currentPage === 'new') {
-      const foundTopic = this.findTopicById(this.state.currentId);
-      this.setState({
-        currentTopic: foundTopic,
-        dataLoaded: true,
-      });
     }
-  }
-
-  topicSubmit(method, event, data, id) {
-    event.preventDefault();
-    console.log(data);
-    fetch(`/api/topics/${id || ''}`, {
-      method: method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ data }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        this.setState({
-          fireRedirect: true,
-          redirectPath: `/`,
-        });
-      })
-      .catch(err => console.log(err));
   }
 
   // Throw away func to find board/id
@@ -98,8 +69,6 @@ export default class BoardController extends Component {
         return <Board currentBoard={this.state.currentBoard} />;
       case 'topic':
         return <Topic currentTopic={this.state.currentTopic} />;
-      case 'new topic':
-        return <TopicCreate topicSubmit={this.topicSubmit} />;
       default:
         return <Redirect push to='/' />;
     }
