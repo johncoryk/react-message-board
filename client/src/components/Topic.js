@@ -12,26 +12,40 @@ export default class Topic extends Component {
     this.state = {
       topic: this.props.currentTopic,
       posts: null,
+      board: null,
     };
 
     this.postSubmit = this.postSubmit.bind(this);
+    this.getPosts = this.getPosts.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/posts')
+    this.getPosts();
+    fetch(`/api/boards/${this.props.currentTopic.board_id}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data.data);
+        console.log('props topic', this.props.currentTopic);
+        console.log('board from topic', data);
         this.setState({
-          posts: data.data,
+          board: data.data.board,
         });
       });
   }
 
-  postSubmit(method, event, data, id) {
+  getPosts() {
+    fetch(`/api/posts/topics/${this.state.topic.id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          posts: data.data.posts,
+        });
+      });
+  }
+
+  postSubmit(method, event, data) {
     event.preventDefault();
     console.log(data);
-    fetch(`/api/posts/${id || ''}`, {
+    fetch(`/api/posts/new/${this.state.topic.id}`, {
       method: method,
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +66,10 @@ export default class Topic extends Component {
     return (
       <main>
         <LargeHeading text={this.state.topic.title} />
-        <SubHeading text='Board' color='var(--alt-gray)' />
+        <SubHeading
+          text={this.state.board && this.state.board.title}
+          color='var(--alt-gray)'
+        />
         <Button text='Post New Message' color='default' />
 
         <div className='topics-container'>

@@ -1,9 +1,8 @@
-
 const postRouter = require('express').Router();
 const postController = require('../controllers/post-controller');
 
-postRouter.get('/', postController.index);
-postRouter.post('/', postController.create);
+postRouter.get('/topics/:id', postController.index);
+postRouter.post('/new/:id', postController.create);
 
 postRouter.get('/:id', postController.show);
 postRouter.put('/:id', postController.update);

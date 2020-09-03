@@ -9,16 +9,18 @@ class Topic {
     this.created_at = topic.created_at;
   }
 
-  static getAll() {
+  static getAll = id => {
     return db
       .manyOrNone(
         `SELECT * FROM topics
-      ORDER BY created_at ASC`
+        WHERE board_id = $1
+      ORDER BY created_at ASC`,
+        id
       )
       .then(topics => {
         return topics.map(topic => new this(topic));
       });
-  }
+  };
 
   static findById = id => {
     return db
@@ -39,8 +41,8 @@ class Topic {
     return db
       .one(
         `INSERT INTO topics
-        (title)
-        VALUES ($/title/)
+        (title, board_id)
+        VALUES ($/title/, $/board_id/)
         RETURNING *`,
         this
       )

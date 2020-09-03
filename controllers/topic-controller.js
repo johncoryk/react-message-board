@@ -3,7 +3,7 @@ const Topic = require('../models/Topic');
 const topicController = {};
 
 topicController.index = (req, res, next) => {
-  Topic.getAll()
+  Topic.getAll(req.params.id)
     .then(topics => {
       res.json({
         message: 'ok',
@@ -14,11 +14,11 @@ topicController.index = (req, res, next) => {
 };
 
 topicController.show = (req, res, next) => {
-  Topic.getById(req.params.id)
-    .then(topics => {
+  Topic.findById(req.params.id)
+    .then(topic => {
       res.json({
         message: 'ok',
-        data: { topics },
+        data: { topic },
       });
     })
     .catch(next);
@@ -27,6 +27,7 @@ topicController.show = (req, res, next) => {
 topicController.create = (req, res, next) => {
   new Topic({
     title: req.body.data,
+    board_id: req.params.id,
   })
     .save()
     .then(topic => {
