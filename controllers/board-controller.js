@@ -14,7 +14,7 @@ boardController.index = (req, res, next) => {
 };
 
 boardController.show = (req, res, next) => {
-  Board.getById(req.params.id)
+  Board.findById(req.params.id)
     .then(board => {
       res.json({
         message: 'ok',

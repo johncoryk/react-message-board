@@ -36,11 +36,14 @@ export default class BoardController extends Component {
           });
         });
     } else if (this.state.currentPage === 'show') {
-      const foundBoard = this.findBoardById(this.state.currentId);
-      this.setState({
-        currentBoard: foundBoard,
-        dataLoaded: true,
-      });
+      fetch(`/api/boards/${this.state.currentId}`)
+        .then(res => res.json())
+        .then(data => {
+          this.setState({
+            currentBoard: data.data.board,
+            dataLoaded: true,
+          });
+        });
     } else if (this.state.currentPage === 'topic') {
       fetch('/api/topics')
         .then(res => res.json())
