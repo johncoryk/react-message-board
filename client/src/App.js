@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import Login from './components/Login'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SearchGames from './components/SearchGames';
@@ -44,6 +44,7 @@ export default class App extends Component {
             )}
           />
           <Route exact path='/game-search' component={SearchGames} />
+          <Route exact path='/login' component={Login}></Route>
         </div>
         <Footer />
       </Router>

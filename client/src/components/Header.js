@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Button from './utility/Button';
 import logo from '../img/gamechat_logo_v1.png';
@@ -25,8 +26,12 @@ const Header = () => {
             <li>Contact</li>
           </ul>
           <div className='nav-btns'>
-            <Button text='Login' color='default' size='small' />
+            <Link to='/login'>
+              <Button text='Login' color='default' size='small' /> 
+            </Link>
+            <Link to='/dashboard'>
             <Button text='Signup' color='default' size='small' />
+            </Link>
           </div>
         </div>
       </div>
