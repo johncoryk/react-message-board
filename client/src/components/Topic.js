@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
@@ -54,9 +53,8 @@ export default class Topic extends Component {
       <main>
         <LargeHeading text={this.state.topic.title} />
         <SubHeading text='Board' color='var(--alt-gray)' />
-        <Link to={`/topic/${this.state.topic.id}/new`}>
-          <Button text='Post New Message' color='default' />
-        </Link>
+        <Button text='Post New Message' color='default' />
+
         <div className='topics-container'>
           {this.state.posts
             ? this.state.posts.map((post, i) => (

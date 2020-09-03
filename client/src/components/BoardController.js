@@ -6,7 +6,7 @@ import MainPage from './MainPage';
 import Board from './Board';
 import Topic from './Topic';
 
-import { boards, topics } from '../THROW_AWAY_DATA/data';
+import { boards } from '../THROW_AWAY_DATA/data';
 
 export default class BoardController extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class BoardController extends Component {
       currentBoard: null,
       currentTopic: null,
       allBoards: boards,
-      allTopics: topics,
+      allTopics: null,
       dataLoaded: false,
       fireRedirect: false,
       redirectPath: null,
@@ -40,11 +40,17 @@ export default class BoardController extends Component {
         dataLoaded: true,
       });
     } else if (this.state.currentPage === 'topic') {
-      const foundTopic = this.findTopicById(this.state.currentId);
-      this.setState({
-        currentTopic: foundTopic,
-        dataLoaded: true,
-      });
+      fetch('/api/topics')
+        .then(res => res.json())
+        .then(data => {
+          const foundTopic = data.data.topics.find(
+            topic => parseInt(topic.id) === parseInt(this.state.currentId)
+          );
+          this.setState({
+            currentTopic: foundTopic,
+            dataLoaded: true,
+          });
+        });
     } else if (this.state.currentPage === 'new') {
       const foundTopic = this.findTopicById(this.state.currentId);
       this.setState({
@@ -58,12 +64,6 @@ export default class BoardController extends Component {
   findBoardById(id) {
     return this.state.allBoards.find(
       board => parseInt(board.id) === parseInt(id)
-    );
-  }
-
-  findTopicById(id) {
-    return this.state.allTopics.find(
-      topic => parseInt(topic.id) === parseInt(id)
     );
   }
 

@@ -5,14 +5,30 @@ import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
 import GameHeading from './utility/GameHeading';
 
-import { topics } from '../THROW_AWAY_DATA/data';
-
 export default class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
       board: this.props.currentBoard,
+      topics: null,
     };
+
+    this.getTopics = this.getTopics.bind(this);
+  }
+
+  componentDidMount() {
+    this.getTopics();
+  }
+
+  getTopics() {
+    fetch('/api/topics')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.data.topics);
+        this.setState({
+          topics: data.data.topics,
+        });
+      });
   }
 
   render() {
@@ -27,18 +43,20 @@ export default class Board extends Component {
               <SubHeading text='Last Post' />
             </div>
           </div>
-          {topics.map(topic => (
-            <div key={topic.id} className='board-row'>
-              <Link to={`/topic/1`}>
-                <GameHeading text={topic.title} />
-              </Link>
-              <div className='board-row-info'>
-                <p>{topic.topics_count}</p>
-                <p>530</p>
-                <p>4 Minutes</p>
-              </div>
-            </div>
-          ))}
+          {this.state.topics
+            ? this.state.topics.map(topic => (
+                <div key={topic.id} className='board-row'>
+                  <Link to={`/topic/${topic.id}`}>
+                    <GameHeading text={topic.title} />
+                  </Link>
+                  <div className='board-row-info'>
+                    <p>{topic.topics_count}</p>
+                    <p>530</p>
+                    <p>4 Minutes</p>
+                  </div>
+                </div>
+              ))
+            : 'Topics loading...'}
         </section>
       </main>
     );
