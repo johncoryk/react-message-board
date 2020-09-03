@@ -67,12 +67,6 @@ export default class BoardController extends Component {
     );
   }
 
-  findTopicById(id) {
-    return this.state.allTopics.find(
-      topic => parseInt(topic.id) === parseInt(id)
-    );
-  }
-
   decideWhichToRender() {
     switch (this.state.currentPage) {
       case 'index':
