@@ -56,21 +56,20 @@ class Board {
        created_at = $/created_at/
        RETURNING *
        `,
+        this
+      )
+      .then(board => Object.assign(board));
+  }
 
-       this
-     )
-     .then((board) => Object.assign(board));
-   }
-
-   delete() {
-     return db.none(
-       `
+  delete() {
+    return db.none(
+      `
        DELETE FROM boards
        WHERE id =$1
        `,
-       this.id
-     );
-   }
+      this.id
+    );
+  }
 }
 
 module.exports = Board;
