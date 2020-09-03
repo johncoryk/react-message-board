@@ -26,7 +26,7 @@ boardController.show = (req, res, next) => {
 
 boardController.create = (req, res, next) => {
   new Board({
-    title: req.body.title,
+    title: req.body.data,
   })
     .save()
     .then(board => {
@@ -50,6 +50,17 @@ boardController.update = (req, res, next) => {
       res.json({
         message: 'Board updated successfully!',
         data: { board },
+      });
+    })
+    .catch(next);
+};
+
+boardController.delete = (req, res, next) => {
+  Board.getById(req.params.id)
+    .then(board => board.delete())
+    .then(() => {
+      res.json({
+        message: 'Board deleted succesfully!',
       });
     })
     .catch(next);

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import LargeHeading from '../components/utility/LargeHeading';
 import SubHeading from '../components/utility/SubHeading';
 import GameHeading from './utility/GameHeading';
+import BoardCreate from './BoardCreate';
 // import Button from '../components/utility/Button';
 
 export default class MainPage extends Component {
@@ -12,6 +13,28 @@ export default class MainPage extends Component {
     this.state = {
       allBoards: this.props.allBoards,
     };
+
+    this.boardSubmit = this.boardSubmit.bind(this);
+  }
+
+  boardSubmit(method, event, data, id) {
+    event.preventDefault();
+    console.log('submit', data);
+    fetch(`/api/boards/`, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          allBoards: [...this.state.allBoards, data.data.board],
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -19,6 +42,7 @@ export default class MainPage extends Component {
       <>
         <main className='boards-container'>
           <LargeHeading text='GameChat Message Boards' />
+          <BoardCreate boardSubmit={this.boardSubmit} />
           <section className='boards-table'>
             <div className='table-header'>
               <SubHeading text='Board' />
