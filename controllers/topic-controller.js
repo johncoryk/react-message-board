@@ -3,7 +3,7 @@ const Topic = require('../models/Topic');
 const topicController = {};
 
 topicController.index = (req, res, next) => {
-  Topic.getAll()
+  Topic.getAll(req.params.id)
     .then(topics => {
       res.json({
         message: 'ok',

@@ -23,10 +23,10 @@ export default class Board extends Component {
   }
 
   getTopics() {
-    fetch('/api/topics')
+    fetch(`/api/topics/boards/${this.state.board.id}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data.data.topics);
+        console.log(data);
         this.setState({
           topics: data.data.topics,
         });
