@@ -8,6 +8,7 @@ const logger = require('morgan');
 
 const postRouter = require('./routes/post-router');
 const topicRouter = require('./routes/topic-router');
+const boardRouter = require('./routes/board-router');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/posts', postRouter);
 app.use('/api/topics', topicRouter);
+app.use('/api/boards', boardRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send({
