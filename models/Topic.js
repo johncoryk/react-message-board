@@ -39,8 +39,8 @@ class Topic {
     return db
       .one(
         `INSERT INTO topics
-        (title)
-        VALUES ($/title/)
+        (title, board_id)
+        VALUES ($/title/, $/board_id/)
         RETURNING *`,
         this
       )

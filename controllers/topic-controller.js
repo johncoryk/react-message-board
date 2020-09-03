@@ -14,7 +14,7 @@ topicController.index = (req, res, next) => {
 };
 
 topicController.show = (req, res, next) => {
-  Topic.getById(req.params.id)
+  Topic.findById(req.params.id)
     .then(topics => {
       res.json({
         message: 'ok',
@@ -27,6 +27,7 @@ topicController.show = (req, res, next) => {
 topicController.create = (req, res, next) => {
   new Topic({
     title: req.body.data,
+    board_id: req.params.id,
   })
     .save()
     .then(topic => {

@@ -33,10 +33,10 @@ export default class Board extends Component {
       });
   }
 
-  topicSubmit(method, event, data, id) {
+  topicSubmit(method, event, data) {
     event.preventDefault();
     console.log('submit', data);
-    fetch(`/api/topics/${id || ''}`, {
+    fetch(`/api/topics/new/${this.state.board.id}`, {
       method: method,
       headers: {
         'Content-Type': 'application/json',
