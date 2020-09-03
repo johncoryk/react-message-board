@@ -64,6 +64,7 @@ boardController.delete = (req, res, next) => {
       });
     })
     .catch(next);
+
 };
 
 module.exports = boardController;
