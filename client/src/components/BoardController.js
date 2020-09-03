@@ -40,11 +40,17 @@ export default class BoardController extends Component {
         dataLoaded: true,
       });
     } else if (this.state.currentPage === 'topic') {
-      const foundTopic = this.findTopicById(this.state.currentId);
-      this.setState({
-        currentTopic: foundTopic,
-        dataLoaded: true,
-      });
+      fetch('/api/topics')
+        .then(res => res.json())
+        .then(data => {
+          const foundTopic = data.data.topics.find(
+            topic => parseInt(topic.id) === parseInt(this.state.currentId)
+          );
+          this.setState({
+            currentTopic: foundTopic,
+            dataLoaded: true,
+          });
+        });
     } else if (this.state.currentPage === 'new') {
       const foundTopic = this.findTopicById(this.state.currentId);
       this.setState({

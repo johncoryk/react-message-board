@@ -46,7 +46,7 @@ export default class Board extends Component {
           {this.state.topics
             ? this.state.topics.map(topic => (
                 <div key={topic.id} className='board-row'>
-                  <Link to={`/topic/1`}>
+                  <Link to={`/topic/${topic.id}`}>
                     <GameHeading text={topic.title} />
                   </Link>
                   <div className='board-row-info'>
