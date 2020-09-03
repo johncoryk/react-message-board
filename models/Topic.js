@@ -20,51 +20,57 @@ class Topic {
       });
   }
 
-  static findById = (id) => {
-    return db.oneOrNone(`
+  static findById = id => {
+    return db
+      .oneOrNone(
+        `
       SELECT * FROM topics
       WHERE id = $1
-    `, id)
-    .then((topic)=> {
-      if (topic) return new this (topic);
-      throw new Error (`Topic ${id} not found`)
-    })
-  }
+    `,
+        id
+      )
+      .then(topic => {
+        if (topic) return new this(topic);
+        throw new Error(`Topic ${id} not found`);
+      });
+  };
 
-  save(){
+  save() {
     return db
       .one(
         `INSERT INTO topics
-        (title, created_at)
-        VALUES ($/title/, $/created_at/)
+        (title)
+        VALUES ($/title/)
         RETURNING *`,
         this
       )
-      .then((topic) => Object.assign(topic));
+      .then(topic => Object.assign(topic));
   }
 
   static update(changes) {
     Object.assign(this, changes);
     return db
-     .one(
-       `
+      .one(
+        `
        UPDATE topics SET
        text = $/title/
        created_at = $/created_at/
        RETURNING *
        `,
-       this
-     )
-     .then((topic) => Object.assign(topic));
-   }
+        this
+      )
+      .then(topic => Object.assign(topic));
+  }
 
-  delete () {
-    return db.none(`
+  delete() {
+    return db.none(
+      `
     DELETE FROM topics
     WHERE id = $1
-    `, this.id);
+    `,
+      this.id
+    );
   }
-  
 }
 
-module.exports =Topic;
+module.exports = Topic;

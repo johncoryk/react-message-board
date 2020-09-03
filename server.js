@@ -1,20 +1,19 @@
 const express = require('express');
 const logger = require('morgan');
-const passport = require('passport');
+// const passport = require('passport');
 // const path = require('path');
 // const cookieParser = require('cookie-parser');
 // const bcrypt = require('bcryptjs');
 // const session = require('express-session');
 
 const postRouter = require('./routes/post-router');
+const topicRouter = require('./routes/topic-router');
 const bodyParser = require('body-parser');
 
 const app = express();
 
 //Middleware
 app.use(logger('dev'));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -40,6 +39,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/posts', postRouter);
+app.use('/api/topics', topicRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send({
