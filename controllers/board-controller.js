@@ -55,4 +55,15 @@ boardController.update = (req, res, next) => {
     .catch(next);
 };
 
+boardController.delete = (req, res ,next) => {
+  Board.getById(req.params.id)
+  .then(board => board.delete())
+  .then(()=> {
+      res.json({
+          message: 'Board deleted succesfully!',
+      });
+  })
+  .catch(next);
+};
+
 module.exports = boardController;
