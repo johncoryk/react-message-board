@@ -66,7 +66,7 @@ boardController.index = (req, res, next) => {
       })
       .catch(next);
   };
-  //delete added
+
   
   
 
