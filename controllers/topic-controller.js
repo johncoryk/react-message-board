@@ -15,10 +15,10 @@ topicController.index = (req, res, next) => {
 
 topicController.show = (req, res, next) => {
   Topic.findById(req.params.id)
-    .then(topics => {
+    .then(topic => {
       res.json({
         message: 'ok',
-        data: { topics },
+        data: { topic },
       });
     })
     .catch(next);

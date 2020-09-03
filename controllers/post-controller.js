@@ -3,11 +3,11 @@ const Post = require('../models/Post.js');
 const postController = {};
 
 postController.index = (req, res, next) => {
-  Post.getAll()
+  Post.getAll(req.params.id)
     .then(posts => {
       res.status(200).json({
         message: 'ok',
-        data: posts,
+        data: { posts },
       });
     })
     .catch(next);
@@ -28,6 +28,7 @@ postController.create = (req, res, next) => {
   try {
     new Post({
       text: req.body.data,
+      topic_id: req.params.id,
     })
       .save()
       .then(post => {

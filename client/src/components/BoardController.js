@@ -16,13 +16,13 @@ export default class BoardController extends Component {
       currentTopic: null,
       allBoards: null,
       allTopics: null,
+      allPosts: null,
       dataLoaded: false,
       fireRedirect: false,
       redirectPath: null,
     };
 
     this.decideWhichToRender = this.decideWhichToRender.bind(this);
-    this.findBoardById = this.findBoardById.bind(this);
   }
 
   componentDidMount() {
@@ -45,25 +45,23 @@ export default class BoardController extends Component {
           });
         });
     } else if (this.state.currentPage === 'topic') {
-      fetch('/api/topics')
+      fetch(`/api/posts/topics/${this.props.currentId}`)
         .then(res => res.json())
         .then(data => {
-          const foundTopic = data.data.topics.find(
-            topic => parseInt(topic.id) === parseInt(this.state.currentId)
-          );
           this.setState({
-            currentTopic: foundTopic,
-            dataLoaded: true,
+            allPosts: data.posts,
           });
+          fetch(`/api/topics/${this.props.currentId}`)
+            .then(res => res.json())
+            .then(data => {
+              console.log('from controller topic', data);
+              this.setState({
+                currentTopic: data.data.topic,
+                dataLoaded: true,
+              });
+            });
         });
     }
-  }
-
-  // Throw away func to find board/id
-  findBoardById(id) {
-    return this.state.allBoards.find(
-      board => parseInt(board.id) === parseInt(id)
-    );
   }
 
   decideWhichToRender() {
