@@ -58,6 +58,16 @@ class Board {
      )
      .then((board) => Object.assign(board));
    }
+
+   delete() {
+     return db.none(
+       `
+       DELETE FROM boards
+       WHERE id =$1
+       `,
+       this.id
+     );
+   }
 }
 
 module.exports = Board;
