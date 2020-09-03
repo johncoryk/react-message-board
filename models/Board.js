@@ -1,7 +1,5 @@
 const db = require('../db/config');
 
-const boards  = {};
-
 class Board {
   constructor(board) {
     this.id = board.id || null;
@@ -19,41 +17,46 @@ class Board {
       .then(boards => {
         return boards.map(board => new this(board));
       });
-    }
+  }
 
-   static findById = (id) => {
-    return db.oneOrNone(`
+  static findById = id => {
+    return db
+      .oneOrNone(
+        `
       SELECT * FROM boards
       WHERE id = $1
-    `, id)
-    .then((board)=> {
-      if (board) return new this (board);
-      throw new Error (`Board ${id} not found`);
-    });
-  }
-  
+    `,
+        id
+      )
+      .then(board => {
+        if (board) return new this(board);
+        throw new Error(`Board ${id} not found`);
+      });
+  };
+
   save() {
     return db
       .one(
         `INSERT INTO boards
-        (title, created_at)
-        VALUES ($/title/, $/created_at/)
+        (title)
+        VALUES ($/title/)
         RETURNING *`,
         this
       )
-      .then((board) => Object.assign(board));
+      .then(board => Object.assign(board));
   }
 
   static update(changes) {
     Object.assign(this, changes);
     return db
-     .one(
-       `
+      .one(
+        `
        UPDATE boards SET
        title = $/title/
        created_at = $/created_at/
        RETURNING *
        `,
+
        this
      )
      .then((board) => Object.assign(board));
