@@ -1,6 +1,6 @@
 # GameChat 
 
-GameChat is a online gaming forum where users can chat and share information about their favorite games along with searching specific games and looking up details about that game. Full CRUD funtionality is supported to add, edit and delete your posts on the forums. [Deployed Project] (https://hidden-anchorage-41934.herokuapp.com/)
+GameChat is a online gaming forum where users can chat and share information about their favorite games along with searching specific games and looking up details about that game. Full CRUD funtionality is supported to add, edit and delete your posts on the forums. [Deployed Project] (https://dry-mountain-75273.herokuapp.com/)
 
 ## User Stories
 (https://i.imgur.com/Myvstk5.png)
