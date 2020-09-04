@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Button from './utility/Button';
+
 export default class PostForm extends Component {
   constructor(props) {
     super(props);
@@ -29,16 +31,16 @@ export default class PostForm extends Component {
 
   render() {
     return (
-      <form className='post-form' onSubmit={e => this.addNewPost(e)}>
+      <form className='post-message-form' onSubmit={e => this.addNewPost(e)}>
         <textarea
           name='text'
-          cols='30'
+          cols='50'
           rows='10'
           value={this.state.text}
           onChange={this.handleInputChange}
         ></textarea>
 
-        <input type='submit' value='Submit' />
+        <Button text='Post New Message' color='default' />
       </form>
     );
   }

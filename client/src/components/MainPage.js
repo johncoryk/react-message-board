@@ -5,7 +5,6 @@ import LargeHeading from '../components/utility/LargeHeading';
 import SubHeading from '../components/utility/SubHeading';
 import GameHeading from './utility/GameHeading';
 import BoardCreate from './BoardCreate';
-// import Button from '../components/utility/Button';
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ export default class MainPage extends Component {
     this.boardSubmit = this.boardSubmit.bind(this);
   }
 
-  boardSubmit(method, event, data, id) {
+  boardSubmit(method, event, data) {
     event.preventDefault();
     console.log('submit', data);
     fetch(`/api/boards/`, {
@@ -48,27 +47,50 @@ export default class MainPage extends Component {
               <SubHeading text='Board' />
               <div className='board-info'>
                 <SubHeading text='Topics' />
-                <SubHeading text='Msgs' />
                 <SubHeading text='Last Post' />
               </div>
             </div>
             {this.state.allBoards
               ? this.state.allBoards.map(board => (
-                  <div key={board.id} className='board-row'>
-                    <Link to={`/board/${board.id}`}>
-                      <GameHeading text={board.title} />
-                    </Link>
-                    <div className='board-row-info'>
-                      <p>{board.topics_count}</p>
-                      <p>530</p>
-                      <p>4 Minutes</p>
-                    </div>
-                  </div>
+                  <BoardRow key={board.id} board={board} />
                 ))
               : 'Boards loading...'}
           </section>
         </main>
       </>
+    );
+  }
+}
+
+class BoardRow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topicCount: null,
+    };
+  }
+
+  componentDidMount() {
+    fetch(`/api/topics/boards/${this.props.board.id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          topicCount: data.data.topics.length,
+        });
+      });
+  }
+
+  render() {
+    return (
+      <div key={this.props.board.id} className='board-row'>
+        <Link to={`/board/${this.props.board.id}`}>
+          <GameHeading text={this.props.board.title} />
+        </Link>
+        <div className='board-row-info'>
+          <p>{this.state.topicCount}</p>
+          <p>4 Minutes</p>
+        </div>
+      </div>
     );
   }
 }

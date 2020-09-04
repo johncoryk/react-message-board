@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Button from '../components/utility/Button';
+
 export default class TopicCreate extends Component {
   constructor(props) {
     super(props);
@@ -30,13 +32,14 @@ export default class TopicCreate extends Component {
     return (
       <form className='post-form' onSubmit={e => this.addNewTopic(e)}>
         <input
+          className='input-style'
           type='text'
           name='title'
           value={this.state.title}
           onChange={this.handleInputChange}
         />
 
-        <input type='submit' value='Submit' />
+        <Button text='Add Topic' color='default' />
       </form>
     );
   }
