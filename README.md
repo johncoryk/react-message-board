@@ -1,7 +1,7 @@
 # GameChat 
 
-<<<<<<< HEAD
-GameChat is a online gaming forum where users can chat and share information about their favorite games along with searching specific games and looking up details about that game. Full CRUD funtionality is supported to add, edit and delete your posts on the forums. [Deployed Project] (https://dry-mountain-75273.herokuapp.com/)
+GameChat is a online gaming forum where users can chat and share information about their favorite games along with searching specific games and looking up details about that game. Full CRUD funtionality is supported to add, edit and delete your posts on the forums. [Deployed Project](https://dry-mountain-75273.herokuapp.com/)
+![Image of Homescreen](./client/src/img/Homepage.png)
 
 ## User Stories
 (https://i.imgur.com/Myvstk5.png)
@@ -23,12 +23,10 @@ GameChat is a online gaming forum where users can chat and share information abo
     1. Using slate to add an text editor
     
     ...
-=======
+
 GameChat is a online gaming forum where users can chat and share information about their favorite games along with searching specific games and looking up details about that game. Full CRUD funtionality is supported to add, edit and delete your posts on the forums. [Deployed Project] (https://hidden-anchorage-41934.herokuapp.com/)
 
-## User Stories
-(https://i.imgur.com/Myvstk5.png)
->>>>>>> a0c1b2cd61a0bcb4f34c7a210ccf564e6da4beea
+
 
 ## WireFrames
 (https://imgur.com/a/hYmcMgU)
@@ -36,18 +34,7 @@ GameChat is a online gaming forum where users can chat and share information abo
 ## Project Board
 https://github.com/johncoryk/react-message-board/projects
 
-
-<<<<<<< HEAD
-
-
 ## CRUD 
-
-
-
-
-
-
-=======
 ```
 | Name            | Description                                                         |
 | --------------- | ------------------------------------------------------------------- |
@@ -87,33 +74,25 @@ https://github.com/johncoryk/react-message-board/projects
 
 ## Project Board
 https://github.com/johncoryk/react-message-board/projects
->>>>>>> a0c1b2cd61a0bcb4f34c7a210ccf564e6da4beea
+
 
 
 ## Built With
-[React]
-[Express]
-[Sql]
+- React
+- Express
+- Sql
 
 ## Authors
 
-* **Cory Kelly** **Sam Choi** **Jonathan Rawlings**- 
-<<<<<<< HEAD
+Cory Kelly  ||  Sam Choi || Jonathan Rawlings 
 
 ## Links and Resources 
 - Potential API to use to get game information: https://blog.api.rakuten.net/top-gaming-api/
 - Ideas and inspiration: https://reddit.com https://gamefaqs.gamespot.com/boards
-=======
->>>>>>> a0c1b2cd61a0bcb4f34c7a210ccf564e6da4beea
 
-## Links and Resources 
-- Potential API to use to get game information: https://blog.api.rakuten.net/top-gaming-api/
-- Ideas and inspiration: https://reddit.com https://gamefaqs.gamespot.com/boards
 
 
 
 ## Future Improvements
-<<<<<<< HEAD
-=======
-If given more time A text editor and customizable user profiles would have been added to give the app more flair, along with up votes and downvotes on topics and posts 
->>>>>>> a0c1b2cd61a0bcb4f34c7a210ccf564e6da4beea
+With more time a text editor and customizable user profiles would have been added to give the app more flair, along with up votes and downvotes on topics and posts. Also we would like to have added a feature to search for specific boards and topics.
+
