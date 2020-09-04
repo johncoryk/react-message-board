@@ -22,8 +22,6 @@ const Header = () => {
                 Search Games
               </NavLink>
             </li>
-            <li>About</li>
-            <li>Contact</li>
           </ul>
           <div className='nav-btns'>
             <Link to='/login'>
