@@ -1,13 +1,13 @@
 const express = require('express');
-const authHelper = require('../services/auth/auth-helper');
+const authHelper = require('../services/auth/auth-helpers');
 const passport = require('../services/auth/local')
 const authRouter = express.Router();
 
-authRouter.get('/login', authHelpers.loginRedirect, (req, res) => {
+authRouter.get('/login', authHelper.loginRedirect, (req, res) => {
     res.render('auth/login')
 })
 authRouter.post('/login', passport.authenticate('local', {
-    successRedirect: 'user',
+    successRedirect: '/user',
     failureRedirect:'/auth/login',
     failureFlash: true,
 }))

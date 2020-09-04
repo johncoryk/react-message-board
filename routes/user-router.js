@@ -1,8 +1,8 @@
-const userRouter = express.Router();
+const userRouter = require('express').Router();
 const userController = require('../controllers/user-controller');
-const authHelpers = require('../client/src/components/services/auth/auth-helpers');
+const authHelpers = require('../services/auth/auth-helpers');
 
-userRouter.Router.get('/', authHelpers.loginRequired, userController.index)
+userRouter.get('/', authHelpers.loginRequired, userController.index)
 
 userRouter.get('/new', authHelpers.loginRedirect, (req, res) => {
     res.render('auth/register');

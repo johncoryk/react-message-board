@@ -16,7 +16,7 @@ const userController = {
       email: req.body.email,
       password_digest: hash,
     }).save()
-    .then(user = => {
+    .then(user => {
       req.login(user, err => {
         if (err) return next(err);
         res.redirect('/user');
