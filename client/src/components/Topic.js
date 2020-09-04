@@ -71,9 +71,11 @@ export default class Topic extends Component {
           text={this.state.board && this.state.board.title}
           color='var(--alt-gray)'
         />
-        <Link to={this.state.board && `/board/${this.state.board.id}`}>
-          <Button text='View All Boards' color='default' />
-        </Link>
+        {this.state.board && (
+          <Link to={`/board/${this.state.board.id}`}>
+            <Button text='Back to Topic' color='default' />
+          </Link>
+        )}
         <div className='topics-container'>
           {this.state.posts
             ? this.state.posts.map((post, i) => (
