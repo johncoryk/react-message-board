@@ -47,7 +47,6 @@ export default class MainPage extends Component {
               <SubHeading text='Board' />
               <div className='board-info'>
                 <SubHeading text='Topics' />
-                <SubHeading text='Msgs' />
                 <SubHeading text='Last Post' />
               </div>
             </div>
@@ -89,7 +88,6 @@ class BoardRow extends Component {
         </Link>
         <div className='board-row-info'>
           <p>{this.state.topicCount}</p>
-          <p>530</p>
           <p>4 Minutes</p>
         </div>
       </div>
