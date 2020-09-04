@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
 import GameHeading from './utility/GameHeading';
-import Button from './utility/Button';
 import PostForm from './PostForm';
 
 export default class Topic extends Component {
@@ -70,7 +69,6 @@ export default class Topic extends Component {
           text={this.state.board && this.state.board.title}
           color='var(--alt-gray)'
         />
-        <Button text='Post New Message' color='default' />
 
         <div className='topics-container'>
           {this.state.posts

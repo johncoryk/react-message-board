@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Button from './utility/Button';
+
 export default class BoardCreate extends Component {
   constructor(props) {
     super(props);
@@ -30,13 +32,13 @@ export default class BoardCreate extends Component {
     return (
       <form className='post-form' onSubmit={e => this.addNewBoard(e)}>
         <input
+          className='input-style'
           type='text'
           name='title'
           value={this.state.title}
           onChange={this.handleInputChange}
         />
-
-        <input type='submit' value='Submit' />
+        <Button text='Add Board' color='default' />
       </form>
     );
   }
