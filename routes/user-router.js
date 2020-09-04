@@ -11,7 +11,7 @@ userRouter.get('/new', authHelpers.loginRedirect, (req, res) => {
 userRouter.post('/', userController.create)
 
 
-userRouter.get('/', userRouter.index);
+userRouter.get('/', userController.index);
 userRouter.post('/', userController.create);
 
 userRouter.get('/:id', userController.show);
