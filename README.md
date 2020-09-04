@@ -1,85 +1,61 @@
-# GameChat
+# GameChat 
 
-GameChat is a forum app for all gamers to discuss , chat and share information about their favorite games. 
+GameChat is a online gaming forum where users can chat and share information about their favorite games along with searching specific games and looking up details about that game. Full CRUD funtionality is supported to add, edit and delete your posts on the forums. [Deployed Project] (https://hidden-anchorage-41934.herokuapp.com/)
 
-## Getting Started
+## User Stories
+(https://i.imgur.com/Myvstk5.png)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Phases of Completion
+1. No-auth features first
+    1. Set up databases
+    2. Add posting function to forums
+    3. Layout the base layout of app
+2. Models routes and api
+    1. Edit, add, delete post
+    2. Fetch game api 
+    3. Make post topics
+3. User auth 
+    1. Set up passport local and user
+    2. Add sign in and register feature
+    
+4. Extras
+    1. Using slate to add an text editor
+    
+    ...
 
-### Prerequisites
+## WireFrames
+(https://imgur.com/a/hYmcMgU)
 
-What things you need to install the software and how to install them
+## Project Board
+https://github.com/johncoryk/react-message-board/projects
 
-```
-Give examples
-```
 
-### Installing
 
-A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
+## CRUD 
 
-```
-Give the example
-```
 
-And repeat
 
-```
-until finished
-```
 
-End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
 
-Explain how to run the automated tests for this system
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+[React]
+[Express]
+[Sql]
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Cory Kelly** **Sam Choi** **Jonathan Rawlings**- 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+## Links and Resources 
+- Potential API to use to get game information: https://blog.api.rakuten.net/top-gaming-api/
+- Ideas and inspiration: https://reddit.com https://gamefaqs.gamespot.com/boards
 
 
 
-## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+## Future Improvements
+If given more time A text editor and customizable user profiles would have been added to give the app more flair, along with up votes and downvotes on topics and posts 
