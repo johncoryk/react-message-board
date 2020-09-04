@@ -5,6 +5,7 @@ import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
 import GameHeading from './utility/GameHeading';
 import TopicCreate from './TopicCreate';
+import Button from './utility/Button';
 
 export default class Board extends Component {
   constructor(props) {
@@ -58,6 +59,9 @@ export default class Board extends Component {
       <main className='boards-container'>
         <LargeHeading text={this.state.board.title} />
         <TopicCreate topicSubmit={this.topicSubmit} />
+        <Link to='/'>
+          <Button text='View All Boards' color='default' />
+        </Link>
         <section className='boards-table'>
           <div className='table-header'>
             <SubHeading text='Topics' />
@@ -68,20 +72,44 @@ export default class Board extends Component {
           </div>
           {this.state.topics
             ? this.state.topics.map(topic => (
-                <div key={topic.id} className='board-row'>
-                  <Link to={`/topic/${topic.id}`}>
-                    <GameHeading text={topic.title} />
-                  </Link>
-                  <div className='board-row-info'>
-                    <p>{topic.topics_count}</p>
-                    <p>530</p>
-                    <p>4 Minutes</p>
-                  </div>
-                </div>
+                <TopicRow key={topic.id} topic={topic} />
               ))
             : 'Topics loading...'}
         </section>
       </main>
+    );
+  }
+}
+
+class TopicRow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      postCount: null,
+    };
+  }
+
+  componentDidMount() {
+    fetch(`/api/posts/topics/${this.props.topic.id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          postCount: data.data.posts.length,
+        });
+      });
+  }
+
+  render() {
+    return (
+      <div key={this.props.topic.id} className='board-row'>
+        <Link to={`/topic/${this.props.topic.id}`}>
+          <GameHeading text={this.props.topic.title} />
+        </Link>
+        <div className='board-row-info'>
+          <p>{this.state.postCount}</p>
+          <p>4 Minutes</p>
+        </div>
+      </div>
     );
   }
 }

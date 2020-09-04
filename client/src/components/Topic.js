@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import LargeHeading from './utility/LargeHeading';
 import SubHeading from './utility/SubHeading';
 import GameHeading from './utility/GameHeading';
 import PostForm from './PostForm';
+import Button from './utility/Button';
 
 export default class Topic extends Component {
   constructor(props) {
@@ -69,7 +71,9 @@ export default class Topic extends Component {
           text={this.state.board && this.state.board.title}
           color='var(--alt-gray)'
         />
-
+        <Link to={this.state.board && `/board/${this.state.board.id}`}>
+          <Button text='View All Boards' color='default' />
+        </Link>
         <div className='topics-container'>
           {this.state.posts
             ? this.state.posts.map((post, i) => (
