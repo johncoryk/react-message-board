@@ -71,9 +71,12 @@ export default class Board extends Component {
             </div>
           </div>
           {this.state.topics
-            ? this.state.topics.map(topic => (
-                <TopicRow key={topic.id} topic={topic} />
-              ))
+            ? this.state.topics.map(topic => {
+                let random = Math.floor(Math.random() * 20 + 9);
+                return (
+                  <TopicRow key={topic.id} topic={topic} random={random} />
+                );
+              })
             : 'Topics loading...'}
         </section>
       </main>
@@ -107,7 +110,7 @@ class TopicRow extends Component {
         </Link>
         <div className='board-row-info'>
           <p>{this.state.postCount}</p>
-          <p>4 Minutes</p>
+          <p>{this.props.random && this.props.random} Minutes</p>
         </div>
       </div>
     );

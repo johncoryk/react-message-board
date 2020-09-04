@@ -51,9 +51,12 @@ export default class MainPage extends Component {
               </div>
             </div>
             {this.state.allBoards
-              ? this.state.allBoards.map(board => (
-                  <BoardRow key={board.id} board={board} />
-                ))
+              ? this.state.allBoards.map(board => {
+                  let random = Math.floor(Math.random() * 20 + 9);
+                  return (
+                    <BoardRow key={board.id} board={board} random={random} />
+                  );
+                })
               : 'Boards loading...'}
           </section>
         </main>
@@ -88,7 +91,7 @@ class BoardRow extends Component {
         </Link>
         <div className='board-row-info'>
           <p>{this.state.topicCount}</p>
-          <p>4 Minutes</p>
+          <p>{this.props.random && this.props.random} Minutes</p>
         </div>
       </div>
     );
